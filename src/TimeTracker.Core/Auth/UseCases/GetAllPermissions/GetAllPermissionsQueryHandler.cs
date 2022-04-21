@@ -19,7 +19,7 @@ public class GetAllPermissionsQueryHandler : IRequestHandler<GetAllPermissionsQu
     public async Task<Maybe<List<AccessPermissionDto>>> Handle(GetAllPermissionsQuery request,
         CancellationToken cancellationToken)
     {
-        return await _context.AccessPermissions.Read()
+        return await _context.AccessPermissions.ReadOnly()
             .Select(x => new AccessPermissionDto()
             {
                 Enabled = false,

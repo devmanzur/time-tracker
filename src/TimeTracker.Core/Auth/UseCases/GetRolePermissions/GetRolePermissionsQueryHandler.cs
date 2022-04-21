@@ -20,7 +20,7 @@ public class GetRolePermissionsQueryHandler : IRequestHandler<GetRolePermissions
         CancellationToken cancellationToken)
     {
         return await _context.RoleAccessPermissions
-            .Read()
+            .ReadOnly()
             .Where(x => x.RoleId == request.RoleId)
             .Include(x => x.Permission)
             .Select(x =>  new AccessPermissionDto()

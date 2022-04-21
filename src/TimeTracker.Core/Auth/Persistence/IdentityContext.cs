@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
+using TimeTracker.Core.Auth.Persistence.Configurations;
 
 namespace TimeTracker.Core.Auth.Persistence
 {
@@ -24,7 +25,7 @@ namespace TimeTracker.Core.Auth.Persistence
         public DbSet<ApplicationRoleAccessPermission> RoleAccessPermissions { get; set; }
         
 
-        public IdentityContext(DbContextOptions options, IConfiguration configuration,
+        public IdentityContext(DbContextOptions<IdentityContext> options, IConfiguration configuration,
             IIdentityDomainEventsDispatcher domainEventsDispatcher, IHttpContextAccessor httpContextAccessor)
             : base(options)
         {
@@ -36,7 +37,10 @@ namespace TimeTracker.Core.Auth.Persistence
         {
             builder.HasDefaultSchema("auth");
             base.OnModelCreating(builder);
-            builder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(IdentityContext))!);
+            builder.ApplyConfiguration(new AccessPermissionConfiguration());
+            builder.ApplyConfiguration(new ApplicationRoleConfiguration());
+            builder.ApplyConfiguration(new ApplicationUserConfiguration());
+            builder.ApplyConfiguration(new ApplicationRoleAccessPermissionConfiguration());
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)

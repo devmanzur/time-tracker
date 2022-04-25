@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using TimeTracker.Core.Shared.Interfaces;
 using TimeTracker.Core.Shared.Utils;
 using TimeTracker.Core.TimeTracking.Models.Entities;
@@ -13,13 +14,26 @@ public class CategoryDto : BaseDto
     public string IconUrl { get; set; }
 }
 
-public class CategoryDtoValidation : AbstractValidator<CategoryDto>
+public class CategoryDtoValidator : AbstractValidator<CategoryDto>
 {
-    public CategoryDtoValidation()
+    public CategoryDtoValidator()
     {
         RuleFor(x => x.Name).NotNull().NotEmpty();
         RuleFor(x => x.IconUrl).NotNull().NotEmpty();
-        RuleFor(x => x.Priority).NotNull().NotEmpty().Must(EnumUtils.BelongToType<Priority>);
-        RuleFor(x => x.ColorCode).NotNull().NotEmpty().Must(EnumUtils.BelongToType<ColorCode>);
+        RuleFor(x => x.Priority).NotNull().NotEmpty().Must(EnumUtils.BelongToType<Priority>).WithMessage("Invalid priority value");
+        RuleFor(x => x.ColorCode).NotNull().NotEmpty().Must(EnumUtils.BelongToType<ColorCode>).WithMessage("Invalid color code value");
+    }
+}
+
+public class CategoryMappingProfile : Profile
+{
+    public CategoryMappingProfile()
+    {
+        CreateMap<Category, CategoryDto>()
+            .ForMember(x => x.ColorCode, opt =>
+                opt.MapFrom(src => src.ColorCode.ToString()))
+            .ForMember(x => x.Priority, opt =>
+                opt.MapFrom(src => src.Priority.ToString()))
+            .ReverseMap();
     }
 }

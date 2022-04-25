@@ -1,10 +1,12 @@
-﻿namespace TimeTracker.Core.Shared.Interfaces;
+﻿using CSharpFunctionalExtensions;
+
+namespace TimeTracker.Core.Shared.Interfaces;
 
 /**
  * CRUD entities must have public getters and setters
  */
 public interface ICrudEntity<in T> where T: BaseDto
 {
-    public void Initialize(T dto);
-    public void Update(T dto);
+    public Result Initialize(T dto);
+    public Result Update(T dto);
 }

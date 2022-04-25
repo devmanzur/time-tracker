@@ -2,5 +2,6 @@
 
 public class BaseDto
 {
-    public int? Id { get; set; }
+    //Never add id to dto
+    // public int? Id { get; set; }
 }

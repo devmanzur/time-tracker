@@ -1,4 +1,5 @@
-﻿using TimeTracker.Core.Shared.Interfaces;
+﻿using CSharpFunctionalExtensions;
+using TimeTracker.Core.Shared.Interfaces;
 using TimeTracker.Core.Shared.Utils;
 using TimeTracker.Core.TimeTracking.Models.Dto;
 
@@ -11,19 +12,33 @@ public class Category : BaseEntity, ICrudEntity<CategoryDto>
     public ColorCode ColorCode { get; set; }
     public string IconUrl { get; set; }
     
-    public void Initialize(CategoryDto dto)
+    public Result Initialize(CategoryDto dto)
     {
+        var validator = new CategoryDtoValidator();
+        var validation = validator.Validate(dto);
+        if (!validation.IsValid)
+        {
+            return Result.Failure(validation.Errors.FirstOrDefault()?.ErrorMessage);
+        }
         this.Name = dto.Name;
         Priority = dto.Priority.ToEnum<Priority>();
         ColorCode = dto.ColorCode.ToEnum<ColorCode>();
         IconUrl = dto.IconUrl;
+        return Result.Success();
     }
 
-    public void Update(CategoryDto dto)
+    public Result Update(CategoryDto dto)
     {
+        var validator = new CategoryDtoValidator();
+        var validation = validator.Validate(dto);
+        if (!validation.IsValid)
+        {
+            return Result.Failure(validation.Errors.FirstOrDefault()?.ErrorMessage);
+        }
         this.Name = dto.Name;
         Priority = dto.Priority.ToEnum<Priority>();
         ColorCode = dto.ColorCode.ToEnum<ColorCode>();
         IconUrl = dto.IconUrl;
+        return Result.Success();
     }
 }

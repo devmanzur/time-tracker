@@ -12,7 +12,7 @@ using TimeTracker.Core.Auth.Persistence;
 namespace TimeTracker.Core.Auth.Migrations
 {
     [DbContext(typeof(IdentityContext))]
-    [Migration("20220421164827_InitialModelsCreated")]
+    [Migration("20220425103741_InitialModelsCreated")]
     partial class InitialModelsCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -13,7 +13,6 @@ public static class CrossCuttingDependencyExtensions
 {
     public static void AddCrossCuttingModule(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddMediatR(typeof(ApplicationUser));
         services.AddValidatorsFromAssemblyContaining<AuthenticateUserByPasswordCommandValidator>();
         services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

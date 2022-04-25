@@ -1,5 +1,6 @@
 using TimeTracker.Core.Auth.Utils;
 using TimeTracker.Core.Shared.Utils;
+using TimeTracker.Core.TimeTracking.Utils;
 using TimeTracker.Web.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCrossCuttingModule(builder.Configuration);
 builder.Services.AddAuthenticationModule(builder.Configuration);
+builder.Services.AddTimeTrackingModule(builder.Configuration);
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddSpaStaticFiles(options => options.RootPath = "ClientApplication/dist");
 builder.Host.AddSerilog();

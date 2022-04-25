@@ -12,11 +12,11 @@ public class ActivityLabelDto : BaseDto
 }
 
 
-public class ActivityLabelDtoValidation : AbstractValidator<ActivityLabelDto>
+public class ActivityLabelDtoValidator : AbstractValidator<ActivityLabelDto>
 {
-    public ActivityLabelDtoValidation()
+    public ActivityLabelDtoValidator()
     {
         RuleFor(x => x.Name).NotNull().NotEmpty();
-        RuleFor(x => x.ColorCode).NotNull().NotEmpty().Must(EnumUtils.BelongToType<ColorCode>);
+        RuleFor(x => x.ColorCode).NotNull().NotEmpty().Must(EnumUtils.BelongToType<ColorCode>).WithMessage("Invalid color code value");
     }
 }

@@ -31,12 +31,4 @@
         
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="TimeTracking\Models\UseCases\CreateItem" />
-      <Folder Include="TimeTracking\Models\UseCases\DeleteItem" />
-      <Folder Include="TimeTracking\Models\UseCases\GetItems" />
-      <Folder Include="TimeTracking\Models\UseCases\GetSingleItem" />
-      <Folder Include="TimeTracking\Models\UseCases\UpdateItem" />
-    </ItemGroup>
-
 </Project>

@@ -1,3 +1,4 @@
+using MediatR;
 using TimeTracker.Core.Auth.Brokers;
 using TimeTracker.Core.Auth.Interfaces;
 using TimeTracker.Core.Auth.Models.Entities;
@@ -14,6 +15,7 @@ public static class AuthDependencyExtensions
 {
     public static void AddAuthenticationModule(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddMediatR(typeof(ApplicationUser));
         services.AddScoped<IIdentityDomainEventsDispatcher, IdentityDomainEventsDispatcher>();
         services.AddScoped<ITokenNotificationBroker, DummyNotificationBroker>();
         services.AddHostedService<ClientSeedingService>();

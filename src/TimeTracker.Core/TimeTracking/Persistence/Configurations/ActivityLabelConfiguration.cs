@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TimeTracker.Core.TimeTracking.Models.Entities;
 
-namespace TimeTracker.Core.TimeTracking.Models.Persistence.Configurations;
+namespace TimeTracker.Core.TimeTracking.Persistence.Configurations;
 
 public class ActivityLabelConfiguration : IEntityTypeConfiguration<ActivityLabel>
 {

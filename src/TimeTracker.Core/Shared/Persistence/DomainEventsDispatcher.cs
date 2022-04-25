@@ -5,11 +5,11 @@ using TimeTracker.Core.Shared.Interfaces;
 
 namespace TimeTracker.Core.Shared.Persistence;
 
-public class DomainEventDispatcher : IDomainEventsDispatcher
+public class DomainEventsDispatcher : IDomainEventsDispatcher
 {
     private readonly IMediator _mediator;
 
-    public DomainEventDispatcher(IMediator mediator)
+    public DomainEventsDispatcher(IMediator mediator)
     {
         _mediator = mediator;
     }

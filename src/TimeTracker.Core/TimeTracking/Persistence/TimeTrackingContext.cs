@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using TimeTracker.Core.Shared.Interfaces;
 using TimeTracker.Core.Shared.Persistence;
 using TimeTracker.Core.TimeTracking.Models.Entities;
-using TimeTracker.Core.TimeTracking.Models.Persistence.Configurations;
+using TimeTracker.Core.TimeTracking.Persistence.Configurations;
 
-namespace TimeTracker.Core.TimeTracking.Models.Persistence;
+namespace TimeTracker.Core.TimeTracking.Persistence;
 
 public class TimeTrackingContext : BaseDbContext<TimeTrackingContext>
 {

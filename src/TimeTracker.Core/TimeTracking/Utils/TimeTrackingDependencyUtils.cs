@@ -16,6 +16,7 @@ public static class TimeTrackingDependencyUtils
         services.AddAutoMapper(typeof(TimeTrackingContext));
         services.AddScoped<IDomainEventsDispatcher, DomainEventsDispatcher>();
         services.AddScoped<ICrudService, CrudService>();
+        services.AddScoped<IQueryService, BasicQueryService>();
         services.AddDbContext<TimeTrackingContext>(options =>
         {
             options.UseSqlServer(configuration.GetConnectionString("ApplicationDatabase"));

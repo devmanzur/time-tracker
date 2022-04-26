@@ -2,6 +2,8 @@
 using CSharpFunctionalExtensions;
 using Microsoft.EntityFrameworkCore;
 using TimeTracker.Core.Shared.Interfaces;
+using TimeTracker.Core.Shared.Models;
+using TimeTracker.Core.Shared.Utils;
 using TimeTracker.Core.TimeTracking.Interfaces;
 using TimeTracker.Core.TimeTracking.Persistence;
 
@@ -83,10 +85,5 @@ public class CrudService : ICrudService
 
         var data = _mapper.Map<TE, T>(item.Value!);
         return Result.Success(data);
-    }
-    
-    public IQueryable<TE> Query<TE>() where TE : BaseEntity
-    {
-        return _context.Set<TE>().AsNoTracking().AsQueryable();
     }
 }

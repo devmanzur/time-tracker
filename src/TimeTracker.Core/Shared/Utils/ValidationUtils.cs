@@ -1,4 +1,5 @@
 using System.Net.Mail;
+using TimeTracker.Core.TimeTracking.Models.Entities;
 
 namespace TimeTracker.Core.Shared.Utils
 {
@@ -13,6 +14,11 @@ namespace TimeTracker.Core.Shared.Utils
 
             MailAddress? mail;
             return MailAddress.TryCreate(email, out mail);
+        }
+
+        public static bool IsValidEntityId(int id)
+        {
+            return id >= 1;
         }
     }
 }

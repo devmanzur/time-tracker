@@ -6,16 +6,16 @@ using TimeTracker.Core.TimeTracking.Models.Entities;
 
 namespace TimeTracker.Core.TimeTracking.Models.Dto;
 
-public class ActivityLabelDto : BaseDto
+public class MandateDto : BaseDto
 {
     public string Name { get;  set; }
     public string ColorCode { get;  set; }
 }
 
 
-public class ActivityLabelDtoValidator : AbstractValidator<ActivityLabelDto>
+public class MandateDtoValidator : AbstractValidator<MandateDto>
 {
-    public ActivityLabelDtoValidator()
+    public MandateDtoValidator()
     {
         RuleFor(x => x.Name).NotNull().NotEmpty();
         RuleFor(x => x.ColorCode).NotNull().NotEmpty().Must(EnumUtils.BelongToType<ColorCode>).WithMessage("Invalid color code value");
@@ -23,11 +23,11 @@ public class ActivityLabelDtoValidator : AbstractValidator<ActivityLabelDto>
 }
 
 
-public class ActivityLabelMappingProfile : Profile
+public class MandateMappingProfile : Profile
 {
-    public ActivityLabelMappingProfile()
+    public MandateMappingProfile()
     {
-        CreateMap<ActivityLabel, ActivityLabelDto>()
+        CreateMap<Mandate, MandateDto>()
             .ForMember(x => x.ColorCode, opt =>
                 opt.MapFrom(src => src.ColorCode.ToString()));
     }

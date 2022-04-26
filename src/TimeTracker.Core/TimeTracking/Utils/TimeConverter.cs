@@ -14,8 +14,6 @@ public class TimeConverter
 
         return (int) total;
     }
-
-
     public static Duration ToDuration(int seconds)
     {
         var hours = ToUpperTimeUnit(ToUpperTimeUnit(seconds));

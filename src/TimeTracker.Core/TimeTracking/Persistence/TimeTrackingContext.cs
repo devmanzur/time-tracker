@@ -17,6 +17,7 @@ public class TimeTrackingContext : BaseDbContext<TimeTrackingContext>
 
     public DbSet<Category> Categories { get; set; }
     public DbSet<ActivityLabel> ActivityLabels { get; set; }
+    public DbSet<Mandate> Mandates { get; set; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -24,5 +25,6 @@ public class TimeTrackingContext : BaseDbContext<TimeTrackingContext>
         base.OnModelCreating(builder);
         builder.ApplyConfiguration(new ActivityLabelConfiguration());
         builder.ApplyConfiguration(new CategoryConfiguration());
+        builder.ApplyConfiguration(new MandateConfiguration());
     }
 }

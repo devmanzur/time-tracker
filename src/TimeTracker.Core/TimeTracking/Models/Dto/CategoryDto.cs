@@ -20,8 +20,10 @@ public class CategoryDtoValidator : AbstractValidator<CategoryDto>
     {
         RuleFor(x => x.Name).NotNull().NotEmpty();
         RuleFor(x => x.IconUrl).NotNull().NotEmpty();
-        RuleFor(x => x.Priority).NotNull().NotEmpty().Must(EnumUtils.BelongToType<Priority>).WithMessage("Invalid priority value");
-        RuleFor(x => x.ColorCode).NotNull().NotEmpty().Must(EnumUtils.BelongToType<ColorCode>).WithMessage("Invalid color code value");
+        RuleFor(x => x.Priority).NotNull().NotEmpty().Must(EnumUtils.BelongToType<Priority>)
+            .WithMessage("Invalid priority value");
+        RuleFor(x => x.ColorCode).NotNull().NotEmpty().Must(EnumUtils.BelongToType<ColorCode>)
+            .WithMessage("Invalid color code value");
     }
 }
 
@@ -33,7 +35,6 @@ public class CategoryMappingProfile : Profile
             .ForMember(x => x.ColorCode, opt =>
                 opt.MapFrom(src => src.ColorCode.ToString()))
             .ForMember(x => x.Priority, opt =>
-                opt.MapFrom(src => src.Priority.ToString()))
-            .ReverseMap();
+                opt.MapFrom(src => src.Priority.ToString()));
     }
 }

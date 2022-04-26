@@ -8,7 +8,7 @@ public class PageResult<T> where T : BaseDto
     {
         Items = items;
         TotalItems = totalItems;
-        CurrentPage = segment.Skip / segment.Size;
+        CurrentPage = segment.Skip / segment.Size > 0 ? segment.Size : 1;
         PageSize = segment.Size;
     }
 

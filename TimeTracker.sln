@@ -6,9 +6,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Core", "src\Tim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeTracker.Web", "src\TimeTracker.Web\TimeTracker.Web.csproj", "{7E0EFB5F-FC1B-464E-96FB-320A35614043}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D5673E92-CDE5-4A96-B3D3-F4BEECA3F48E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C22E1202-D582-4883-B63D-8C7B275D95BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.TimeTracker.Core", "Test.TimeTracker.Core\Test.TimeTracker.Core.csproj", "{A7FA43E2-7979-4904-A841-2EB7F3544A41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.TimeTracker.Core", "test\Test.TimeTracker.Core\Test.TimeTracker.Core.csproj", "{FAAF7603-4368-4280-8C30-AC3AFF72F802}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,7 +18,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{DB919C1C-44D5-4C9F-AFE6-2E329F125BDF} = {80E72E85-9C9E-46E6-853F-1F869433B770}
 		{7E0EFB5F-FC1B-464E-96FB-320A35614043} = {80E72E85-9C9E-46E6-853F-1F869433B770}
-		{A7FA43E2-7979-4904-A841-2EB7F3544A41} = {D5673E92-CDE5-4A96-B3D3-F4BEECA3F48E}
+		{FAAF7603-4368-4280-8C30-AC3AFF72F802} = {C22E1202-D582-4883-B63D-8C7B275D95BC}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DB919C1C-44D5-4C9F-AFE6-2E329F125BDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -29,9 +29,9 @@ Global
 		{7E0EFB5F-FC1B-464E-96FB-320A35614043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E0EFB5F-FC1B-464E-96FB-320A35614043}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E0EFB5F-FC1B-464E-96FB-320A35614043}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7FA43E2-7979-4904-A841-2EB7F3544A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7FA43E2-7979-4904-A841-2EB7F3544A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7FA43E2-7979-4904-A841-2EB7F3544A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7FA43E2-7979-4904-A841-2EB7F3544A41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAAF7603-4368-4280-8C30-AC3AFF72F802}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAAF7603-4368-4280-8C30-AC3AFF72F802}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAAF7603-4368-4280-8C30-AC3AFF72F802}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAAF7603-4368-4280-8C30-AC3AFF72F802}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

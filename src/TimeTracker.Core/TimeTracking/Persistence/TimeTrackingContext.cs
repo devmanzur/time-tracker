@@ -24,6 +24,7 @@ public class TimeTrackingContext : BaseDbContext<TimeTrackingContext>
     {
         builder.HasDefaultSchema("time-tracker");
         base.OnModelCreating(builder);
+        builder.ApplyConfiguration(new ActivityConfiguration());
         builder.ApplyConfiguration(new ActivityLabelConfiguration());
         builder.ApplyConfiguration(new CategoryConfiguration());
         builder.ApplyConfiguration(new MandateConfiguration());

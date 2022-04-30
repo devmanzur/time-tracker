@@ -10,11 +10,8 @@ namespace TimeTracker.Web.Controllers
     [Route("api/[controller]")]
     public abstract class BaseApiController : ControllerBase
     {
-        private const string PreferredUsername = "preferred_username";
-        private const string UserId = "sub";
-
-        protected AuthorizedUser AuthorizedUser => new AuthorizedUser(User.GetClaimValue(OpenIddictConstants.Claims.Subject)!,
+        protected AuthorizedUser AuthorizedUser => new AuthorizedUser(
+            User.GetClaimValue(OpenIddictConstants.Claims.Subject)!,
             User.GetClaimValue(OpenIddictConstants.Claims.Email)!);
-        
     }
 }

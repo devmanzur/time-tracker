@@ -1,6 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using TimeTracker.Core.Shared.Models;
 using TimeTracker.Core.Shared.Utils;
 using TimeTracker.Core.TimeTracking.Interfaces;
 using TimeTracker.Core.TimeTracking.Models.Dto;
@@ -39,17 +40,26 @@ public partial class ActivityService : IActivityService
             .FirstOrDefaultAsync(x => x.Id == id);
     }
 
-    public async Task<Result> Remove(int id)
+    public async Task<PageResult<ActivityDetailsDto>> GetPage(Segment segment)
     {
-        Maybe<Models.Entities.Activity?> activity =
-            await _context.Activities.FindById(id);
-        if (activity.HasNoValue)
-        {
-            return Result.Failure<ActivityDetailsDto>("Activity not found");
-        }
+        var total = await _context.Activities.CountAsync();
 
-        _context.Activities.Remove(activity.Value!);
-        await _context.SaveChangesAsync();
-        return Result.Success();
+        var items = await _context.Activities
+            .ReadOnly()
+            .Segment(segment)
+            .Select(activity => new ActivityDetailsDto()
+            {
+                CategoryId = activity.CategoryId,
+                Category = activity.Category.Name,
+                MandateId = activity.MandateId,
+                Mandate = activity.Mandate.Name,
+                Date = activity.Date.ToString("d"),
+                Description = activity.Description,
+                Duration = TimeConverter.ToDuration(activity.DurationInSeconds),
+                Id = activity.Id
+            })
+            .ToListAsync();
+
+        return new PageResult<ActivityDetailsDto>(items, segment, total);
     }
 }

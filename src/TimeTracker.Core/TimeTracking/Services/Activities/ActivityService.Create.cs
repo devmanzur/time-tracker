@@ -32,7 +32,7 @@ public partial class ActivityService
             return Result.Failure<ActivityDetailsDto>("Category not found");
         }
 
-        var activity = new Models.Entities.Activity(mandate.Value!, category.Value!, request.Duration, request.Date);
+        var activity = new Activity(mandate.Value!, category.Value!, request.Duration, request.Date);
 
         if (request.LabelIds != null && request.LabelIds.Any())
         {

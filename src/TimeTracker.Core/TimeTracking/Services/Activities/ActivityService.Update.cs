@@ -11,7 +11,7 @@ public partial class ActivityService
 {
     public async Task<Result<ActivityDetailsDto>> Update(int id, ActivityDto request)
     {
-        Maybe<Models.Entities.Activity?> activity =
+        Maybe<Activity?> activity =
             await _context.Activities
                 .Include(x => x.Tags)
                 .FindById(id);

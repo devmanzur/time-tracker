@@ -8,12 +8,12 @@ using TimeTracker.Core.TimeTracking.Persistence;
 
 namespace TimeTracker.Core.TimeTracking.Services;
 
-public class BasicQueryService : IQueryService
+public class BaseQueryService : IQueryService
 {
     private readonly TimeTrackingContext _context;
     private readonly IMapper _mapper;
 
-    public BasicQueryService(TimeTrackingContext context, IMapper mapper)
+    public BaseQueryService(TimeTrackingContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

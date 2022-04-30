@@ -64,12 +64,12 @@ public abstract class BaseCrudController<T, TE> : BaseApiController
     [HttpDelete("{id}")]
     public async Task<ActionResult<Envelope<T>>> Remove(int id)
     {
-        var createItem = await _crudService.RemoveItem<T, TE>(id);
-        if (createItem.IsSuccess)
+        var removeItem = await _crudService.RemoveItem<T, TE>(id);
+        if (removeItem.IsSuccess)
         {
             return Ok(Envelope.Ok());
         }
 
-        return BadRequest(Envelope.Error(createItem.Error));
+        return BadRequest(Envelope.Error(removeItem.Error));
     }
 }

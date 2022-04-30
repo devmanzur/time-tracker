@@ -11,6 +11,10 @@ public class ActivityLabel : BaseEntity, ICrudEntity<ActivityLabelDto>
     public string Name { get; set; }
     public ColorCode ColorCode { get; set; }
 
+    private List<Tag> _tags = new List<Tag>();
+
+    public IReadOnlyList<Tag> Tags => _tags.AsReadOnly();
+
     public Result Initialize(ActivityLabelDto dto)
     {
         var validator = new ActivityLabelDtoValidator();

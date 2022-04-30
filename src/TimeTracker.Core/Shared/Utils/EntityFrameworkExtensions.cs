@@ -19,7 +19,7 @@ public static class EntityFrameworkExtensions
                 BindingFlags.NonPublic | BindingFlags.Static)
             ?.MakeGenericMethod(entityData.ClrType);
         var filter = methodToCall?.Invoke(null, Array.Empty<object>());
-        entityData.SetQueryFilter((LambdaExpression)filter!);
+        entityData.SetQueryFilter((LambdaExpression) filter!);
         entityData.AddIndex(entityData.FindProperty(nameof(ISoftDeletable.IsSoftDeleted))!);
     }
 
@@ -35,6 +35,13 @@ public static class EntityFrameworkExtensions
         where TEntity : class
     {
         return source.AsNoTracking();
+    }
+
+    public static Task<TEntity?> FindById<TEntity>(
+        [NotNull] this IQueryable<TEntity> source, int id)
+        where TEntity : BaseEntity
+    {
+        return source.FirstOrDefaultAsync(x => x.Id == id);
     }
 
     public static IQueryable<TEntity> Segment<TEntity>(

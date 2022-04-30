@@ -22,6 +22,11 @@ public class Activity : BaseEntity, IAuditable
     public DateTime LastModifiedTime { get; set; }
     public string LastModifiedBy { get; set; }
 
+    protected Activity()
+    {
+        
+    }
+    
     public Activity(Mandate mandate, Category category, Duration duration, DateTime date)
     {
         DurationInSeconds = TimeConverter.ToSeconds(duration);
@@ -40,6 +45,7 @@ public class Activity : BaseEntity, IAuditable
 
     public Result AddTag(ActivityLabel label)
     {
+        
         if (_tags.Any(x => x.ActivityLabelId == label.Id))
         {
             return Result.Failure("Duplicate label");
@@ -53,9 +59,9 @@ public class Activity : BaseEntity, IAuditable
         return Result.Success();
     }
 
-    public Result RemoveTag(ActivityLabel label)
+    public Result RemoveTag(int labelId)
     {
-        Maybe<Tag?> tag = _tags.FirstOrDefault(x => x.ActivityLabelId == label.Id);
+        Maybe<Tag?> tag = _tags.FirstOrDefault(x => x.ActivityLabelId == labelId);
         if (tag.HasNoValue) return Result.Failure("Label not tagged");
 
         _tags.Remove(tag.Value!);

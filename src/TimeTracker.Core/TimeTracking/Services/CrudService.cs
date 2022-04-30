@@ -14,15 +14,11 @@ public class CrudService : ICrudService
     private readonly TimeTrackingContext _context;
     private readonly IMapper _mapper;
 
-    public CrudService(TimeTrackingContext context,IMapper mapper)
+    public CrudService(TimeTrackingContext context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;
     }
-    
-    /**
-     * Write operations
-     */
 
     public async Task<Result<T>> CreateItem<T, TE>(T request)
         where T : BaseDto where TE : BaseEntity, ICrudEntity<T>, new()
@@ -42,7 +38,7 @@ public class CrudService : ICrudService
     public async Task<Result<T>> UpdateItem<T, TE>(int id, T request)
         where T : BaseDto where TE : BaseEntity, ICrudEntity<T>
     {
-        Maybe<TE?> item = await _context.Set<TE>().FirstOrDefaultAsync(x => x.Id == id);
+        Maybe<TE?> item = await _context.Set<TE>().FindById(id);
         if (item.HasNoValue)
         {
             return Result.Failure<T>("Item not found!");
@@ -60,7 +56,7 @@ public class CrudService : ICrudService
 
     public async Task<Result> RemoveItem<T, TE>(int id) where T : BaseDto where TE : BaseEntity, ICrudEntity<T>
     {
-        Maybe<TE?> item = await _context.Set<TE>().FirstOrDefaultAsync(x => x.Id == id);
+        Maybe<TE?> item = await _context.Set<TE>().FindById(id);
         if (item.HasNoValue)
         {
             return Result.Failure<T>("Item not found!");
@@ -71,13 +67,9 @@ public class CrudService : ICrudService
         return Result.Success();
     }
 
-    /**
-     * Read operations, no tracking
-     */
-
     public async Task<Result<T>> FindById<T, TE>(int id) where T : BaseDto where TE : BaseEntity, ICrudEntity<T>
     {
-        Maybe<TE?> item = await _context.Set<TE>().AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        Maybe<TE?> item = await _context.Set<TE>().ReadOnly().FindById(id);
         if (item.HasNoValue)
         {
             return Result.Failure<T>("Item not found!");

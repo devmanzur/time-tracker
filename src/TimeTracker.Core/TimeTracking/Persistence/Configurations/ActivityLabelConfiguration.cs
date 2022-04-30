@@ -11,5 +11,15 @@ public class ActivityLabelConfiguration : IEntityTypeConfiguration<ActivityLabel
         builder.Property(x => x.Name).IsRequired();
         builder.HasIndex(x => x.Name).IsUnique();
         builder.Property(x => x.ColorCode).HasConversion<string>().IsRequired();
+        
+        
+        
+        builder.HasMany(a => a.Tags)
+            .WithOne(r => r.ActivityLabel)
+            .HasForeignKey(r => r.ActivityLabelId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Metadata.FindNavigation(nameof(ActivityLabel.Tags))
+            ?.SetPropertyAccessMode(PropertyAccessMode.Field);
     }
 }

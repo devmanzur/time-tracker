@@ -21,7 +21,7 @@ public class BasicQueryService : IQueryService
 
     public IQueryable<TE> Query<TE>() where TE : BaseEntity
     {
-        return _context.Set<TE>().AsNoTracking().AsQueryable();
+        return _context.Set<TE>().ReadOnly().AsQueryable();
     }
 
     public async Task<PageResult<T>> GetPage<T, TE>(Segment segment)
@@ -30,7 +30,7 @@ public class BasicQueryService : IQueryService
         var total = await _context.Set<TE>().CountAsync();
 
         var items = await _context.Set<TE>()
-            .AsNoTracking()
+            .ReadOnly()
             .Segment(segment)
             .ToListAsync();
 

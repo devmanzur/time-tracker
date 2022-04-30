@@ -1,10 +1,8 @@
-﻿using AutoMapper;
-using FluentValidation;
+﻿using FluentValidation;
 using TimeTracker.Core.Shared.Interfaces;
 using TimeTracker.Core.Shared.Utils;
 using TimeTracker.Core.TimeTracking.Models.Entities;
 using TimeTracker.Core.TimeTracking.Rules;
-using TimeTracker.Core.TimeTracking.Utils;
 
 namespace TimeTracker.Core.TimeTracking.Models.Dto;
 
@@ -15,6 +13,8 @@ public class ActivityDto : BaseDto
     public DateTime Date { get; set; }
     public int MandateId { get; set; }
     public int CategoryId { get; set; }
+
+    public int[]? LabelIds { get; set; }
 }
 
 public class ActivityDtoValidator : AbstractValidator<ActivityDto>

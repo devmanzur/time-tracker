@@ -30,7 +30,7 @@ public class ActivityDtoValidator : AbstractValidator<ActivityDto>
 
     private static bool IsValidDuration(Duration arg)
     {
-        var rule = new ActivityDurationMustBeAtLeastFiveMinutes(arg);
+        var rule = new DurationMustBeAtLeastFiveMinutesRule(arg);
         return !rule.IsBroken();
     }
 }

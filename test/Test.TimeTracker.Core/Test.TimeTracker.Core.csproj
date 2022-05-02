@@ -24,7 +24,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\TimeTracker.Core\TimeTracker.Core.csproj" />
-      <ProjectReference Include="..\src\TimeTracker.Core\TimeTracker.Core.csproj" />
     </ItemGroup>
 
 </Project>

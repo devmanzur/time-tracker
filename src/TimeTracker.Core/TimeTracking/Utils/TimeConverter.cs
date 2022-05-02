@@ -24,7 +24,7 @@ public class TimeConverter
         var fullMinutes = (int) minutes;
 
         var remainingMinutes = minutes - fullMinutes;
-        var fullSeconds = ToLowerTimeUnit(remainingMinutes);
+        var fullSeconds = Math.Round(ToLowerTimeUnit(remainingMinutes));
 
         return new Duration()
         {

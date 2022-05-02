@@ -1,5 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using TimeTracker.Core.Shared.Interfaces;
+using TimeTracker.Core.TimeTracking.Models.Dto;
+using TimeTracker.Core.TimeTracking.Rules;
 using TimeTracker.Core.TimeTracking.Utils;
 
 namespace TimeTracker.Core.TimeTracking.Models.Entities;
@@ -24,11 +26,13 @@ public class Activity : BaseEntity, IAuditable
 
     protected Activity()
     {
-        
     }
-    
+
     public Activity(Mandate mandate, Category category, Duration duration, DateTime date)
     {
+        CheckRules(new DurationMustBeAtLeastFiveMinutesRule(duration), new DateMustBeValidRule(date),
+            new EntityMustHaveValidIdRule(mandate, nameof(Mandate)),
+            new EntityMustHaveValidIdRule(category, nameof(category)));
         DurationInSeconds = TimeConverter.ToSeconds(duration);
         Date = date;
         MandateId = mandate.Id;
@@ -37,6 +41,9 @@ public class Activity : BaseEntity, IAuditable
 
     public void Update(Mandate mandate, Category category, Duration duration, DateTime date)
     {
+        CheckRules(new DurationMustBeAtLeastFiveMinutesRule(duration), new DateMustBeValidRule(date),
+            new EntityMustHaveValidIdRule(mandate, nameof(Mandate)),
+            new EntityMustHaveValidIdRule(category, nameof(category)));
         DurationInSeconds = TimeConverter.ToSeconds(duration);
         Date = date;
         MandateId = mandate.Id;
@@ -45,7 +52,6 @@ public class Activity : BaseEntity, IAuditable
 
     public Result AddTag(ActivityLabel label)
     {
-        
         if (_tags.Any(x => x.ActivityLabelId == label.Id))
         {
             return Result.Failure("Duplicate label");

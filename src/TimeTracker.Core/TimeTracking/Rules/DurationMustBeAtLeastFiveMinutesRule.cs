@@ -16,8 +16,8 @@ public class DurationMustBeAtLeastFiveMinutesRule : IBusinessRule
 
     public bool IsBroken()
     {
-        return TimeConverter.ToSeconds(_duration) < FiveMinutes;
+        return _duration == null || TimeConverter.ToSeconds(_duration) < FiveMinutes;
     }
 
-    public string Message { get; }
+    public string Message => "Duration must be at least 5 minutes";
 }

@@ -17,7 +17,7 @@ public class ActivityLabel : BaseEntity, ICrudEntity<ActivityLabelDto>
 
     public Result Initialize(ActivityLabelDto dto)
     {
-        if (Validate(dto, out var failure)) return failure;
+        if (IsInvalid(dto, out var failure)) return failure;
         this.Name = dto.Name;
         this.ColorCode = dto.ColorCode.ToEnum<ColorCode>();
         return Result.Success();
@@ -25,24 +25,24 @@ public class ActivityLabel : BaseEntity, ICrudEntity<ActivityLabelDto>
 
     public Result Update(ActivityLabelDto dto)
     {
-        if (Validate(dto, out var failure)) return failure;
+        if (IsInvalid(dto, out var failure)) return failure;
         this.Name = dto.Name;
         this.ColorCode = dto.ColorCode.ToEnum<ColorCode>();
         return Result.Success();
     }
 
-    private static bool Validate(in ActivityLabelDto dto, out Result failure)
+    private static bool IsInvalid(in ActivityLabelDto dto, out Result output)
     {
         var validator = new ActivityLabelDtoValidator();
         var validation = validator.Validate(dto);
         if (!validation.IsValid)
         {
             {
-                failure = Result.Failure(validation.Errors.FirstOrDefault()?.ErrorMessage);
+                output = Result.Failure(validation.Errors.FirstOrDefault()?.ErrorMessage);
                 return true;
             }
         }
-
+        output = Result.Success();
         return false;
     }
 }

@@ -13,7 +13,7 @@ public class DateMustBeValidRule : IBusinessRule
 
     public bool IsBroken()
     {
-        return _dateTime == default || DateTime.UtcNow.Year - _dateTime.Year > 1 ||
+        return _dateTime==null || _dateTime == default || DateTime.UtcNow.Year - _dateTime.Year > 1 ||
                DateTime.UtcNow.Date < _dateTime.Date;
     }
 

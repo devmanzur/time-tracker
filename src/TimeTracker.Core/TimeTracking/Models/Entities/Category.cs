@@ -14,7 +14,7 @@ public class Category : BaseEntity, ICrudEntity<CategoryDto>
     
     public Result Initialize(CategoryDto dto)
     {
-        if (Validate(dto, out var failure)) return failure;
+        if (IsInvalid(dto, out var failure)) return failure;
         this.Name = dto.Name;
         Priority = dto.Priority.ToEnum<Priority>();
         ColorCode = dto.ColorCode.ToEnum<ColorCode>();
@@ -24,7 +24,7 @@ public class Category : BaseEntity, ICrudEntity<CategoryDto>
 
     public Result Update(CategoryDto dto)
     {
-        if (Validate(dto, out var failure)) return failure;
+        if (IsInvalid(dto, out var failure)) return failure;
         this.Name = dto.Name;
         Priority = dto.Priority.ToEnum<Priority>();
         ColorCode = dto.ColorCode.ToEnum<ColorCode>();
@@ -32,18 +32,18 @@ public class Category : BaseEntity, ICrudEntity<CategoryDto>
         return Result.Success();
     }
     
-    private static bool Validate(in CategoryDto dto, out Result failure)
+    private static bool IsInvalid(in CategoryDto dto, out Result output)
     {
         var validator = new CategoryDtoValidator();
         var validation = validator.Validate(dto);
         if (!validation.IsValid)
         {
             {
-                failure = Result.Failure(validation.Errors.FirstOrDefault()?.ErrorMessage);
+                output = Result.Failure(validation.Errors.FirstOrDefault()?.ErrorMessage);
                 return true;
             }
         }
-
+        output = Result.Success();
         return false;
     }
 }

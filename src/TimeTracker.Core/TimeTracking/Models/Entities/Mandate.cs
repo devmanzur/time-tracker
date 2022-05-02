@@ -12,12 +12,7 @@ public class Mandate : BaseEntity, ICrudEntity<MandateDto>
 
     public Result Initialize(MandateDto dto)
     {
-        var validator = new MandateDtoValidator();
-        var validation = validator.Validate(dto);
-        if (!validation.IsValid)
-        {
-            return Result.Failure(validation.Errors.FirstOrDefault()?.ErrorMessage);
-        }
+        if (Validate(dto, out var failure)) return failure;
 
         this.Name = dto.Name;
         this.ColorCode = dto.ColorCode.ToEnum<ColorCode>();
@@ -26,15 +21,25 @@ public class Mandate : BaseEntity, ICrudEntity<MandateDto>
 
     public Result Update(MandateDto dto)
     {
-        var validator = new MandateDtoValidator();
-        var validation = validator.Validate(dto);
-        if (!validation.IsValid)
-        {
-            return Result.Failure(validation.Errors.FirstOrDefault()?.ErrorMessage);
-        }
+        if (Validate(dto, out var failure)) return failure;
 
         this.Name = dto.Name;
         this.ColorCode = dto.ColorCode.ToEnum<ColorCode>();
         return Result.Success();
+    }
+
+    private static bool Validate(in MandateDto dto, out Result failure)
+    {
+        var validator = new MandateDtoValidator();
+        var validation = validator.Validate(dto);
+        if (!validation.IsValid)
+        {
+            {
+                failure = Result.Failure(validation.Errors.FirstOrDefault()?.ErrorMessage);
+                return true;
+            }
+        }
+
+        return false;
     }
 }

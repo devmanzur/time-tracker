@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using CSharpFunctionalExtensions;
-using Microsoft.EntityFrameworkCore;
 using TimeTracker.Core.Shared.Interfaces;
-using TimeTracker.Core.Shared.Models;
 using TimeTracker.Core.Shared.Utils;
 using TimeTracker.Core.TimeTracking.Interfaces;
 using TimeTracker.Core.TimeTracking.Persistence;

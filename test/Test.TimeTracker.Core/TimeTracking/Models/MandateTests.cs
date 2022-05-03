@@ -11,21 +11,21 @@ using Xunit;
 
 namespace Test.TimeTracker.Core.TimeTracking.Models;
 
-public class ActivityLabelTests
+public class MandateTests
 {
     private static readonly Faker Faker = new Faker();
     
     
     #region Test data generators
 
-    private class ActivityLabelTestInvalidData : IEnumerable<object?[]>
+    private class MandateTestInvalidData : IEnumerable<object?[]>
     {
         public IEnumerator<object?[]> GetEnumerator()
         {
             yield return new object?[] {null};
             yield return new object?[]
             {
-                new ActivityLabelDto()
+                new MandateDto()
                 {
                     Name = null,
                     ColorCode = null
@@ -33,7 +33,7 @@ public class ActivityLabelTests
             };
             yield return new object?[]
             {
-                new ActivityLabelDto()
+                new MandateDto()
                 {
                     Name = Faker.Random.String(),
                     ColorCode = null
@@ -41,7 +41,7 @@ public class ActivityLabelTests
             };
             yield return new object?[]
             {
-                new ActivityLabelDto()
+                new MandateDto()
                 {
                     Name = null,
                     ColorCode = ColorCode.Blue.ToString()
@@ -55,15 +55,15 @@ public class ActivityLabelTests
     #endregion
 
     [Theory]
-    [ClassData(typeof(ActivityLabelTestInvalidData))]
-    public void ShouldFailToInitializeActivityLabelWhenOneOrMorePropertiesAreInvalid(ActivityLabelDto request)
+    [ClassData(typeof(MandateTestInvalidData))]
+    public void ShouldFailToInitializeMandateWhenOneOrMorePropertiesAreInvalid(MandateDto request)
     {
         //given
-        var validator = new ActivityLabelDtoValidator();
+        var validator = new MandateDtoValidator();
         var actualValidationError = validator.Validate(request);
 
         //when
-        var activityLabel = new ActivityLabel();
+        var activityLabel = new Mandate();
         var result = activityLabel.Initialize(request);
 
         //then
@@ -71,15 +71,15 @@ public class ActivityLabelTests
     }
 
     [Theory]
-    [ClassData(typeof(ActivityLabelTestInvalidData))]
-    public void ShouldFailToUpdateActivityLabelWhenOneOrMorePropertiesAreInvalid(ActivityLabelDto request)
+    [ClassData(typeof(MandateTestInvalidData))]
+    public void ShouldFailToUpdateMandateWhenOneOrMorePropertiesAreInvalid(MandateDto request)
     {
         //given
-        var validator = new ActivityLabelDtoValidator();
+        var validator = new MandateDtoValidator();
         var actualValidationError = validator.Validate(request);
 
         //when
-        var activityLabel = new ActivityLabel();
+        var activityLabel = new Mandate();
         var result = activityLabel.Update(request);
 
         //then
@@ -87,11 +87,11 @@ public class ActivityLabelTests
     }
     
     [Theory,AutoData]
-    public void ShouldInitializeActivityLabelWhenPropertiesAreValid(ActivityLabel request)
+    public void ShouldInitializeMandateWhenPropertiesAreValid(Mandate request)
     {
         //when
-        var activityLabel = new ActivityLabel();
-        var result = activityLabel.Initialize(new ActivityLabelDto()
+        var activityLabel = new Mandate();
+        var result = activityLabel.Initialize(new MandateDto()
         {
             Name = request.Name,
             ColorCode = request.ColorCode.ToString()
@@ -102,11 +102,11 @@ public class ActivityLabelTests
     }
     
     [Theory,AutoData]
-    public void ShouldUpdateActivityLabelWhenPropertiesAreValid(ActivityLabel request)
+    public void ShouldUpdateMandateWhenPropertiesAreValid(Mandate request)
     {
         //when
-        var activityLabel = new ActivityLabel();
-        var result = activityLabel.Update(new ActivityLabelDto()
+        var activityLabel = new Mandate();
+        var result = activityLabel.Update(new MandateDto()
         {
             Name = request.Name,
             ColorCode = request.ColorCode.ToString()

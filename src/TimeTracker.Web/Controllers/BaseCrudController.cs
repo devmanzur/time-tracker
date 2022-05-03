@@ -8,8 +8,8 @@ namespace TimeTracker.Web.Controllers;
 public abstract class BaseCrudController<T, TE> : BaseApiController
     where T : BaseDto where TE : BaseEntity, ICrudEntity<T>, new()
 {
-    private readonly ICrudService _crudService;
-    private readonly IQueryService _queryService;
+    protected readonly ICrudService _crudService;
+    protected readonly IQueryService _queryService;
 
     protected BaseCrudController(ICrudService crudService,IQueryService queryService)
     {

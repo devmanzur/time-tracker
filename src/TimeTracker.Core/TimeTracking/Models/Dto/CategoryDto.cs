@@ -14,7 +14,7 @@ public class CategoryDto : BaseDto
     public string IconUrl { get; set; }
 }
 
-public class CategoryDtoValidator : AbstractValidator<CategoryDto>
+public class CategoryDtoValidator : BaseFluentValidator<CategoryDto>
 {
     public CategoryDtoValidator()
     {

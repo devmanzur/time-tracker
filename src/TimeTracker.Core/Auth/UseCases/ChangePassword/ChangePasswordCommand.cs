@@ -3,6 +3,7 @@ using TimeTracker.Core.Auth.Models.Dto;
 using CSharpFunctionalExtensions;
 using FluentValidation;
 using MediatR;
+using TimeTracker.Core.Shared.Utils;
 
 namespace TimeTracker.Core.Auth.UseCases.ChangePassword;
 
@@ -20,7 +21,7 @@ public class ChangePasswordCommand : IRequest<Result>
     }
 }
 
-public class ChangePasswordCommandValidator : AbstractValidator<ChangePasswordCommand>
+public class ChangePasswordCommandValidator : BaseFluentValidator<ChangePasswordCommand>
 {
     public ChangePasswordCommandValidator()
     {

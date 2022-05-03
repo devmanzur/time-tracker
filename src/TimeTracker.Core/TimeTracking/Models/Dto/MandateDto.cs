@@ -13,7 +13,7 @@ public class MandateDto : BaseDto
 }
 
 
-public class MandateDtoValidator : AbstractValidator<MandateDto>
+public class MandateDtoValidator : BaseFluentValidator<MandateDto>
 {
     public MandateDtoValidator()
     {

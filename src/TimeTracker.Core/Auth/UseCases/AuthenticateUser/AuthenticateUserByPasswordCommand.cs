@@ -19,7 +19,7 @@ namespace TimeTracker.Core.Auth.UseCases.AuthenticateUser
         public string? Password { get; private set; }
     }
 
-    public class AuthenticateUserByPasswordCommandValidator : AbstractValidator<AuthenticateUserByPasswordCommand>
+    public class AuthenticateUserByPasswordCommandValidator : BaseFluentValidator<AuthenticateUserByPasswordCommand>
     {
         public AuthenticateUserByPasswordCommandValidator()
         {

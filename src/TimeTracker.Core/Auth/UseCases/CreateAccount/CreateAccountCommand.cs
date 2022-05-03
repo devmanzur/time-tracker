@@ -14,7 +14,7 @@ public class CreateAccountCommand: IRequest<Result<UserDto>>
     public string LastName { get;  set; }
 }
 
-public class CreateAccountCommandValidator : AbstractValidator<CreateAccountCommand>
+public class CreateAccountCommandValidator : BaseFluentValidator<CreateAccountCommand>
 {
     public CreateAccountCommandValidator()
     {

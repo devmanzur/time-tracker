@@ -13,7 +13,7 @@ public class ActivityLabelDto : BaseDto
 }
 
 
-public class ActivityLabelDtoValidator : AbstractValidator<ActivityLabelDto>
+public class ActivityLabelDtoValidator : BaseFluentValidator<ActivityLabelDto>
 {
     public ActivityLabelDtoValidator()
     {

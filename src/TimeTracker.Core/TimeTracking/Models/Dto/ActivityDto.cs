@@ -17,7 +17,7 @@ public class ActivityDto : BaseDto
     public int[]? LabelIds { get; set; }
 }
 
-public class ActivityDtoValidator : AbstractValidator<ActivityDto>
+public class ActivityDtoValidator : BaseFluentValidator<ActivityDto>
 {
     public ActivityDtoValidator()
     {

@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TimeTracker.Core.Auth.Migrations
+namespace TimeTracker.Core.Auth.Persistence.Migrations
 {
     public partial class InitialModelsCreated : Migration
     {

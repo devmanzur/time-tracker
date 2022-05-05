@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TimeTracker.Core.TimeTracking.Migrations
+namespace TimeTracker.Core.TimeTracking.Persistence.Migrations
 {
     public partial class AddedActivityModel : Migration
     {

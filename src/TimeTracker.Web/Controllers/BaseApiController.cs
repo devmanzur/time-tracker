@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using TimeTracker.Core.Auth.Models.Dto;
 using TimeTracker.Core.Auth.Utils;
 using Microsoft.AspNetCore.Mvc;

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace TimeTracker.Core.TimeTracking.Migrations
+namespace TimeTracker.Core.TimeTracking.Persistence.Migrations
 {
     public partial class AddedIndividualSpecifierToEntity : Migration
     {

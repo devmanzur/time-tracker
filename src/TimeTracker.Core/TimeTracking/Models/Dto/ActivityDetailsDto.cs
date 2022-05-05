@@ -8,6 +8,7 @@ public class ActivityDetailsDto : BaseDto
 {
     public string Mandate { get; set; }
     public string Category { get; set; }
+    public string CategoryColorCode { get; set; }
     public string CategoryIconUrl { get; set; }
     public string? Description { get; set; }
     public Duration Duration { get; set; }

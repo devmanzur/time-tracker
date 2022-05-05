@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerDocumentationProvider("Time Tracker","Personal time tracking application");
 builder.Services.AddCrossCuttingModule(builder.Configuration);
 builder.Services.AddAuthenticationModule(builder.Configuration);
 builder.Services.AddTimeTrackingModule(builder.Configuration);
@@ -36,7 +36,7 @@ app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllers();
+    endpoints.MapControllers().RequireAuthorization();
 });
 app.UseSpa(spa =>
 {

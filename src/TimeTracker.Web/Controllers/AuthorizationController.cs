@@ -180,11 +180,9 @@ public class AuthorizationController : BaseApiController
     }
 
     private AuthenticationTicket CreateTicketAsync(
-        OpenIddictRequest request, ApplicationUser user, ClaimsPrincipal principal,
-        AuthenticationProperties properties = null, List<string> roles = null)
+        OpenIddictRequest request, ClaimsPrincipal principal,
+        AuthenticationProperties? properties = null)
     {
-        principal = AddUserInformationToPrincipal(principal, roles, user);
-
         var ticket = new AuthenticationTicket(principal, properties,
             OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
 
@@ -237,7 +235,7 @@ public class AuthorizationController : BaseApiController
         return ticket;
     }
 
-    private ClaimsPrincipal AddUserInformationToPrincipal(ClaimsPrincipal principal, List<string> roles,
+    private ClaimsPrincipal GetPrincipalWithUserClaims(ClaimsPrincipal principal, List<string> roles,
         ApplicationUser user)
     {
         var identity = principal.Identity as ClaimsIdentity;
@@ -270,7 +268,7 @@ public class AuthorizationController : BaseApiController
         ClaimsPrincipal principal)
     {
         var roles = await _userManager.GetRolesAsync(user);
-        var ticket = CreateTicketAsync(request, user, principal, null, roles.ToList());
+        var ticket = CreateTicketAsync(request, GetPrincipalWithUserClaims(principal, roles.ToList(), user));
         return ticket;
     }
 

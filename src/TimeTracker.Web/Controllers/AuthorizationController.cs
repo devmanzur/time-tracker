@@ -256,7 +256,7 @@ public class AuthorizationController : BaseApiController
         }
 
         //TODO: Add custom claims here
-        identity.AddClaims(roles.Select(r => new Claim(CustomClaimTypes.IndividualId, user.UserName)));
+        identity.AddClaim(new Claim(CustomClaimTypes.IndividualId, user.UserName));
 
         return new ClaimsPrincipal(identity);
     }
@@ -265,7 +265,8 @@ public class AuthorizationController : BaseApiController
         ClaimsPrincipal principal)
     {
         var roles = await _userManager.GetRolesAsync(user);
-        var ticket = CreateTicketAsync(request, GetPrincipalWithUserClaims(principal, roles.ToList(), user));
+        var principalWithUserClaims = GetPrincipalWithUserClaims(principal, roles.ToList(), user);
+        var ticket = CreateTicketAsync(request, principalWithUserClaims);
         return ticket;
     }
 

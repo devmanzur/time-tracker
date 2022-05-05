@@ -104,16 +104,18 @@ public static class AuthDependencyExtensions
             })
             .AddValidation(options =>
             {
-                // Import the configuration from the local OpenIddict server instance.
+                // Registers the OpenIddict validation/server integration services in the DI container
+                // and automatically imports the configuration from the local OpenIddict server.
                 options.UseLocalServer();
 
                 // For applications that need immediate access token or authorization
                 // revocation, the database entry of the received tokens and their
                 // associated authorizations can be validated for each API call.
-                // Enabling these options may have a negative impact on performance.
+                // Note: enabling this option may have an impact on performance and
+                // can only be used with an OpenIddict-based authorization server.
                 options.EnableAuthorizationEntryValidation();
                 options.EnableTokenEntryValidation();
-                
+
                 // Registers the OpenIddict validation services for ASP.NET Core in the DI container.
                 options.UseAspNetCore();
             });

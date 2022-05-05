@@ -1,11 +1,12 @@
 ﻿using CSharpFunctionalExtensions;
 using TimeTracker.Core.Shared.Interfaces;
 using TimeTracker.Core.Shared.Utils;
+using TimeTracker.Core.TimeTracking.Interfaces;
 using TimeTracker.Core.TimeTracking.Models.Dto;
 
 namespace TimeTracker.Core.TimeTracking.Models.Entities;
 
-public class Mandate : BaseEntity, ICrudEntity<MandateDto>
+public class Mandate : BaseEntity, ICrudEntity<MandateDto>,IIndividualSpecificEntity
 {
     public string Name { get; set; }
     public ColorCode ColorCode { get; set; }
@@ -42,4 +43,6 @@ public class Mandate : BaseEntity, ICrudEntity<MandateDto>
         output = Result.Success();
         return false;
     }
+
+    public string IndividualId { get; set; }
 }

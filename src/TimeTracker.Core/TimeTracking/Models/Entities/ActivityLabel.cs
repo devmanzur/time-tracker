@@ -2,11 +2,12 @@
 using CSharpFunctionalExtensions;
 using TimeTracker.Core.Shared.Interfaces;
 using TimeTracker.Core.Shared.Utils;
+using TimeTracker.Core.TimeTracking.Interfaces;
 using TimeTracker.Core.TimeTracking.Models.Dto;
 
 namespace TimeTracker.Core.TimeTracking.Models.Entities;
 
-public class ActivityLabel : BaseEntity, ICrudEntity<ActivityLabelDto>
+public class ActivityLabel : BaseEntity, ICrudEntity<ActivityLabelDto>,IIndividualSpecificEntity
 {
     public string Name { get; set; }
     public ColorCode ColorCode { get; set; }
@@ -45,4 +46,6 @@ public class ActivityLabel : BaseEntity, ICrudEntity<ActivityLabelDto>
         output = Result.Success();
         return false;
     }
+
+    public string IndividualId { get; set; }
 }

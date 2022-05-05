@@ -1,11 +1,12 @@
 ﻿using CSharpFunctionalExtensions;
 using TimeTracker.Core.Shared.Interfaces;
+using TimeTracker.Core.TimeTracking.Interfaces;
 using TimeTracker.Core.TimeTracking.Rules;
 using TimeTracker.Core.TimeTracking.Utils;
 
 namespace TimeTracker.Core.TimeTracking.Models.Entities;
 
-public class Activity : BaseEntity, IAuditable
+public class Activity : BaseEntity, IAuditable,IIndividualSpecificEntity
 {
     public string? Description { get; set; }
     public int DurationInSeconds { get; private set; }
@@ -72,4 +73,6 @@ public class Activity : BaseEntity, IAuditable
         _tags.Remove(tag.Value!);
         return Result.Success();
     }
+
+    public string IndividualId { get; set; }
 }

@@ -1,11 +1,12 @@
 ﻿using CSharpFunctionalExtensions;
 using TimeTracker.Core.Shared.Interfaces;
 using TimeTracker.Core.Shared.Utils;
+using TimeTracker.Core.TimeTracking.Interfaces;
 using TimeTracker.Core.TimeTracking.Models.Dto;
 
 namespace TimeTracker.Core.TimeTracking.Models.Entities;
 
-public class Category : BaseEntity, ICrudEntity<CategoryDto>
+public class Category : BaseEntity, ICrudEntity<CategoryDto>,IIndividualSpecificEntity
 {
     public string Name { get; set; }
     public Priority Priority { get; set; }
@@ -46,4 +47,6 @@ public class Category : BaseEntity, ICrudEntity<CategoryDto>
         output = Result.Success();
         return false;
     }
+
+    public string IndividualId { get; set; }
 }

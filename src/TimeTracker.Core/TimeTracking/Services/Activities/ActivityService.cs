@@ -26,6 +26,7 @@ public partial class ActivityService : IActivityService
         return await _context.Activities.AsNoTracking()
             .Include(x => x.Category).AsNoTracking()
             .Include(x => x.Mandate).AsNoTracking()
+            .Include(x => x.Tags).ThenInclude(t => t.ActivityLabel).AsNoTracking()
             .Select(activity => new ActivityDetailsDto()
             {
                 CategoryId = activity.CategoryId,
@@ -35,7 +36,13 @@ public partial class ActivityService : IActivityService
                 Date = activity.Date.ToString("d"),
                 Description = activity.Description,
                 Duration = TimeConverter.ToDuration(activity.DurationInSeconds),
-                Id = activity.Id
+                Id = activity.Id,
+                Labels = activity.Tags.Select(x => new ActivityLabelDto()
+                {
+                    Id = x.ActivityLabel.Id,
+                    Name = x.ActivityLabel.Name,
+                    ColorCode = x.ActivityLabel.ColorCode.ToString()
+                }).ToList()
             })
             .FirstOrDefaultAsync(x => x.Id == id);
     }

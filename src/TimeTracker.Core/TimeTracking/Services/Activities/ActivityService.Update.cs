@@ -55,7 +55,13 @@ public partial class ActivityService
             Date = activity.Value!.Date.ToString("d"),
             Description = activity.Value!.Description,
             Duration = TimeConverter.ToDuration(activity.Value!.DurationInSeconds),
-            Id = activity.Value!.Id
+            Id = activity.Value!.Id,
+            Labels = activity.Value!.Tags.Select(x=>new ActivityLabelDto()
+            {
+                Id = x.ActivityLabel.Id,
+                Name = x.ActivityLabel.Name,
+                ColorCode = x.ActivityLabel.ColorCode.ToString()
+            }).ToList()
         });
 
         void ClearRemovedLabels(List<int> currentTags)

@@ -32,7 +32,10 @@ public partial class ActivityService
             return Result.Failure<ActivityDetailsDto>("Category not found");
         }
 
-        var activity = new Activity(mandate.Value!, category.Value!, request.Duration, request.Date);
+        var activity = new Activity(mandate.Value!, category.Value!, request.Duration, request.Date)
+        {
+            Description = request.Description
+        };
 
         if (request.LabelIds != null && request.LabelIds.Any())
         {
@@ -52,7 +55,13 @@ public partial class ActivityService
             Date = activity.Date.ToString("d"),
             Description = activity.Description,
             Duration = TimeConverter.ToDuration(activity.DurationInSeconds),
-            Id = activity.Id
+            Id = activity.Id,
+            Labels = activity.Tags.Select(x=>new ActivityLabelDto()
+            {
+                Id = x.ActivityLabel.Id,
+                Name = x.ActivityLabel.Name,
+                ColorCode = x.ActivityLabel.ColorCode.ToString()
+            }).ToList()
         });
     }
 }

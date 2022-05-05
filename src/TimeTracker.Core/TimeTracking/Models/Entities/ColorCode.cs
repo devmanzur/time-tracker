@@ -6,11 +6,12 @@ public enum ColorCode
     Yellow,
     Orange,
     Red,
+    Pink,
+    Purple,
     Violet,
     Blue,
     SkyBlue,
     Lemon,
-    Pink,
     Indigo,
     Grey
 }

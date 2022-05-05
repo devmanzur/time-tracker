@@ -30,6 +30,7 @@ public class CrudService : ICrudService
 
         _context.Set<TE>().Add(item);
         await _context.SaveChangesAsync();
+        request.Id = item.Id;
         return Result.Success(request);
     }
 

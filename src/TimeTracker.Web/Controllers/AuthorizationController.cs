@@ -20,16 +20,13 @@ public class AuthorizationController : BaseApiController
 {
     private readonly IMediator _mediator;
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly IOptions<IdentityOptions> _identityOptions;
 
     public AuthorizationController(IMediator mediator, UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager,
         IOptions<IdentityOptions> identityOptions)
     {
         _mediator = mediator;
         _userManager = userManager;
-        _signInManager = signInManager;
         _identityOptions = identityOptions;
     }
 

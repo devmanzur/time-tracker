@@ -14,6 +14,7 @@ public class ActivitiesController : BaseApiController
         _activityService = activityService;
     }
     
+    
     [HttpGet]
     public async Task<ActionResult<Envelope<PageResult<ActivityDetailsDto>>>> GetPage([FromQuery] Segment segment)
     {

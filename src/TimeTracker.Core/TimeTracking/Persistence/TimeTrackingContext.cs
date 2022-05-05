@@ -34,8 +34,8 @@ public class TimeTrackingContext : BaseDbContext<TimeTrackingContext>
             if (typeof(IIndividuallyOwnedEntity).IsAssignableFrom(entityType.ClrType))
             {
                 //TODO: disable individual id accessor when running migrations
-                entityType.AddIndividuallyOwnedEntityQueryFilter(string.Empty);
-                // entityType.AddIndividuallyOwnedEntityQueryFilter(GetIndividualId());
+                // entityType.AddIndividuallyOwnedEntityQueryFilter(string.Empty);
+                entityType.AddIndividuallyOwnedEntityQueryFilter(GetIndividualId());
             }
         }
 

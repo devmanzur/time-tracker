@@ -113,6 +113,9 @@ public static class AuthDependencyExtensions
                 // Enabling these options may have a negative impact on performance.
                 options.EnableAuthorizationEntryValidation();
                 options.EnableTokenEntryValidation();
+                
+                // Registers the OpenIddict validation services for ASP.NET Core in the DI container.
+                options.UseAspNetCore();
             });
 
         #endregion

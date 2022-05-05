@@ -9,6 +9,7 @@ public class ActivityLabelConfiguration : IEntityTypeConfiguration<ActivityLabel
     public void Configure(EntityTypeBuilder<ActivityLabel> builder)
     {
         builder.Property(x => x.Name).IsRequired();
+        builder.Property(x => x.IndividualId).IsRequired();
         builder.HasIndex(x => x.Name).IsUnique();
         builder.Property(x => x.ColorCode).HasConversion<string>().IsRequired();
         

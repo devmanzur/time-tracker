@@ -6,7 +6,7 @@ using TimeTracker.Core.TimeTracking.Models.Dto;
 
 namespace TimeTracker.Core.TimeTracking.Models.Entities;
 
-public class Category : BaseEntity, ICrudEntity<CategoryDto>,IIndividualSpecificEntity
+public class Category : BaseEntity, ICrudEntity<CategoryDto>,IIndividuallyOwnedEntity
 {
     public string Name { get; set; }
     public Priority Priority { get; set; }

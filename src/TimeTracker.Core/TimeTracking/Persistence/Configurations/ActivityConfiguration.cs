@@ -9,6 +9,7 @@ public class ActivityConfiguration : IEntityTypeConfiguration<Activity>
     public void Configure(EntityTypeBuilder<Activity> builder)
     {
         builder.Property(x => x.Date).IsRequired();
+        builder.Property(x => x.IndividualId).IsRequired();
         builder.Property(x => x.DurationInSeconds).IsRequired();
         builder.Property(x => x.CategoryId).IsRequired();
         builder.Property(x => x.MandateId).IsRequired();

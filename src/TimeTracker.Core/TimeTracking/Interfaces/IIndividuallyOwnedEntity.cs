@@ -1,6 +1,6 @@
 ﻿namespace TimeTracker.Core.TimeTracking.Interfaces;
 
-public interface IIndividualSpecificEntity
+public interface IIndividuallyOwnedEntity
 {
     public string IndividualId { get; set; }
 }

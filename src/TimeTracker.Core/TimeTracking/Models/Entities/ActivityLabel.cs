@@ -7,7 +7,7 @@ using TimeTracker.Core.TimeTracking.Models.Dto;
 
 namespace TimeTracker.Core.TimeTracking.Models.Entities;
 
-public class ActivityLabel : BaseEntity, ICrudEntity<ActivityLabelDto>,IIndividualSpecificEntity
+public class ActivityLabel : BaseEntity, ICrudEntity<ActivityLabelDto>,IIndividuallyOwnedEntity
 {
     public string Name { get; set; }
     public ColorCode ColorCode { get; set; }

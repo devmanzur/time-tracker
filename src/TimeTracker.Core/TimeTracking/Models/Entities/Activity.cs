@@ -6,7 +6,7 @@ using TimeTracker.Core.TimeTracking.Utils;
 
 namespace TimeTracker.Core.TimeTracking.Models.Entities;
 
-public class Activity : BaseEntity, IAuditable,IIndividualSpecificEntity
+public class Activity : BaseEntity, IAuditable,IIndividuallyOwnedEntity
 {
     public string? Description { get; set; }
     public int DurationInSeconds { get; private set; }

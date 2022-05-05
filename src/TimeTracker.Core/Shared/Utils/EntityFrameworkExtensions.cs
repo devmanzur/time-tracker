@@ -6,6 +6,7 @@ using TimeTracker.Core.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using TimeTracker.Core.Shared.Interfaces;
+using TimeTracker.Core.TimeTracking.Interfaces;
 
 namespace TimeTracker.Core.Shared.Utils;
 
@@ -21,6 +22,25 @@ public static class EntityFrameworkExtensions
         var filter = methodToCall?.Invoke(null, Array.Empty<object>());
         entityData.SetQueryFilter((LambdaExpression) filter!);
         entityData.AddIndex(entityData.FindProperty(nameof(ISoftDeletable.IsSoftDeleted))!);
+    }
+
+    public static void AddIndividuallyOwnedEntityQueryFilter(
+        this IMutableEntityType entityData, string individualId)
+    {
+        var methodToCall = typeof(EntityFrameworkExtensions)
+            .GetMethod(nameof(GetIndividuallyOwnedFilter),
+                BindingFlags.NonPublic | BindingFlags.Static)
+            ?.MakeGenericMethod(entityData.ClrType);
+        var filter = methodToCall?.Invoke(null, new object[] {individualId});
+        entityData.SetQueryFilter((LambdaExpression) filter!);
+        entityData.AddIndex(entityData.FindProperty(nameof(IIndividuallyOwnedEntity.IndividualId))!);
+    }
+
+    private static LambdaExpression GetIndividuallyOwnedFilter<TEntity>(string individualId)
+        where TEntity : class, IIndividuallyOwnedEntity
+    {
+        Expression<Func<TEntity, bool>> filter = x => x.IndividualId == individualId;
+        return filter;
     }
 
     private static LambdaExpression GetSoftDeleteFilter<TEntity>()

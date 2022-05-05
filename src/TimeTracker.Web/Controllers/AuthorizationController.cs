@@ -49,7 +49,7 @@ public class AuthorizationController : BaseApiController
 
         if (request?.Username != null && request?.Password != null)
         {
-           return await HandleResourceOwnerAuthorization(request);
+            return await HandleResourceOwnerAuthorization(request);
         }
 
 
@@ -257,8 +257,11 @@ public class AuthorizationController : BaseApiController
                 }
             }
 
-            identity.AddClaims(roles.Select(r => new Claim("role", r)));
+            identity.AddClaims(roles.Select(r => new Claim(ClaimTypes.Role, r)));
         }
+
+        //TODO: Add custom claims here
+        identity.AddClaims(roles.Select(r => new Claim(CustomClaimTypes.IndividualId, user.UserName)));
 
         return new ClaimsPrincipal(identity);
     }
@@ -286,13 +289,12 @@ public class AuthorizationController : BaseApiController
 
     private async Task<IActionResult> HandleResourceOwnerAuthorization(OpenIddictRequest request)
     {
-        
         var authenticate =
             await _mediator.Send(new AuthenticateUserByPasswordCommand(request.Username, request.Password));
         if (authenticate.IsSuccess)
         {
             var ticket = await IssueTicket(request, authenticate.Value.User, authenticate.Value.Principal);
-            
+
             var claims = ticket.Principal.Claims;
 
             var claimsIdentity = new ClaimsIdentity(claims, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
@@ -303,7 +305,7 @@ public class AuthorizationController : BaseApiController
 
             return SignIn(claimsPrincipal, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
         }
-        
+
         return Forbid(
             authenticationSchemes: OpenIddictServerAspNetCoreDefaults.AuthenticationScheme,
             properties: new AuthenticationProperties(new Dictionary<string, string>
@@ -311,6 +313,5 @@ public class AuthorizationController : BaseApiController
                 [OpenIddictServerAspNetCoreConstants.Properties.Error] = OpenIddictConstants.Errors.AccessDenied,
                 [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = "Invalid username/ password"
             }!));
-       
     }
 }

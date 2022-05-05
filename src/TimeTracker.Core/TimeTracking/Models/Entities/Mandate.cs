@@ -6,7 +6,7 @@ using TimeTracker.Core.TimeTracking.Models.Dto;
 
 namespace TimeTracker.Core.TimeTracking.Models.Entities;
 
-public class Mandate : BaseEntity, ICrudEntity<MandateDto>,IIndividualSpecificEntity
+public class Mandate : BaseEntity, ICrudEntity<MandateDto>,IIndividuallyOwnedEntity
 {
     public string Name { get; set; }
     public ColorCode ColorCode { get; set; }

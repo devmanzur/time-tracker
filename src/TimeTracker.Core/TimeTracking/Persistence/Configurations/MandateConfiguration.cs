@@ -9,6 +9,7 @@ public class MandateConfiguration : IEntityTypeConfiguration<Mandate>
     public void Configure(EntityTypeBuilder<Mandate> builder)
     {
         builder.Property(x => x.Name).IsRequired();
+        builder.Property(x => x.IndividualId).IsRequired();
         builder.HasIndex(x => x.Name).IsUnique();
         builder.Property(x => x.ColorCode).HasConversion<string>().IsRequired();
     }

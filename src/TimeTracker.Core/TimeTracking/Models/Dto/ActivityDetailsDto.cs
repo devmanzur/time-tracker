@@ -7,7 +7,6 @@ namespace TimeTracker.Core.TimeTracking.Models.Dto;
 public class ActivityDetailsDto : BaseDto
 {
     public string Mandate { get; set; }
-    public string MandateIconUrl { get; set; }
     public string Category { get; set; }
     public string CategoryIconUrl { get; set; }
     public string? Description { get; set; }

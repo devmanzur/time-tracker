@@ -31,6 +31,7 @@ public partial class ActivityService : IActivityService
             {
                 CategoryId = activity.CategoryId,
                 Category = activity.Category.Name,
+                CategoryIconUrl = activity.Category.IconUrl,
                 MandateId = activity.MandateId,
                 Mandate = activity.Mandate.Name,
                 Date = activity.Date.ToString("d"),
@@ -58,6 +59,7 @@ public partial class ActivityService : IActivityService
             {
                 CategoryId = activity.CategoryId,
                 Category = activity.Category.Name,
+                CategoryIconUrl = activity.Category.IconUrl,
                 MandateId = activity.MandateId,
                 Mandate = activity.Mandate.Name,
                 Date = activity.Date.ToString("d"),

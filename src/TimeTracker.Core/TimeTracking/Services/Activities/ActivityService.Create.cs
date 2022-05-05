@@ -50,6 +50,7 @@ public partial class ActivityService
         {
             CategoryId = activity.CategoryId,
             Category = category.Value!.Name,
+            CategoryIconUrl = category.Value!.IconUrl,
             MandateId = activity.MandateId,
             Mandate = mandate.Value!.Name,
             Date = activity.Date.ToString("d"),

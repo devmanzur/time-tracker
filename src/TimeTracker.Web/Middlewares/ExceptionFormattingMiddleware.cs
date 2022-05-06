@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
 using TimeTracker.Core.Shared.Exceptions;
 using TimeTracker.Core.Shared.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using TimeTracker.Web.Utils;
 
 namespace TimeTracker.Web.Middlewares;
 
@@ -37,16 +39,22 @@ public class ExceptionFormattingMiddleware
     private Task HandleException(HttpContext context, Exception exception, IWebHostEnvironment env)
     {
         var code = HttpStatusCode.InternalServerError;
-        var error = env.IsDevelopment()? exception.Message : DummyMessage();
+        var error = env.IsDevelopment() ? exception.Message : DefaultErrorMessages.ServerError;
 
         switch (exception)
         {
+            case DbUpdateException dbUpdateException:
+                code = HttpStatusCode.BadRequest;
+                error = env.IsDevelopment()
+                    ? (dbUpdateException.InnerException?.Message ?? dbUpdateException.Message)
+                    : DefaultErrorMessages.ConstraintViolation;
+                break;
             case BusinessRuleViolationException businessRuleViolationException:
-                code = HttpStatusCode.Forbidden;
+                code = HttpStatusCode.BadRequest;
                 error = businessRuleViolationException.Message;
                 break;
             case ValidationException validationException:
-                code = HttpStatusCode.UnprocessableEntity;
+                code = HttpStatusCode.BadRequest;
                 error = validationException.Message;
                 break;
         }
@@ -67,10 +75,5 @@ public class ExceptionFormattingMiddleware
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = (int) code;
         return context.Response.WriteAsync(result);
-    }
-
-    private static string DummyMessage()
-    {
-        return "Sorry, Something wrong on our side, Please try again";
     }
 }

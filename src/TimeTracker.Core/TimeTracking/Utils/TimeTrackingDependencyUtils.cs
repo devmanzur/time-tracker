@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TimeTracker.Core.Shared.Interfaces;
 using TimeTracker.Core.Shared.Persistence;
+using TimeTracker.Core.Shared.Services.Crud;
 using TimeTracker.Core.TimeTracking.Interfaces;
 using TimeTracker.Core.TimeTracking.Persistence;
 using TimeTracker.Core.TimeTracking.Services;

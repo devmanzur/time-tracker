@@ -5,7 +5,7 @@ using TimeTracker.Core.Shared.Models;
 using TimeTracker.Core.Shared.Utils;
 using TimeTracker.Core.TimeTracking.Interfaces;
 
-namespace TimeTracker.Core.TimeTracking.Services;
+namespace TimeTracker.Core.Shared.Services.Crud;
 
 public class BaseQueryService<TDc> : IQueryService where TDc : DbContext
 {

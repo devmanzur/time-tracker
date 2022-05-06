@@ -1,5 +1,5 @@
 ﻿using CSharpFunctionalExtensions;
-using TimeTracker.Core.Shared.Models;
+using TimeTracker.Core.Shared.Models.Dto;
 using TimeTracker.Core.TimeTracking.Models.Dto;
 
 namespace TimeTracker.Core.TimeTracking.Interfaces;

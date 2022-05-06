@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TimeTracker.Core.Shared.Models;
+using TimeTracker.Core.Shared.Models.Dto;
 using TimeTracker.Core.Shared.Utils;
 using TimeTracker.Core.TimeTracking.Interfaces;
 using TimeTracker.Core.TimeTracking.Models.Dto;

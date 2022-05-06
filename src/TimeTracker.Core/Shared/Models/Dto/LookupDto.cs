@@ -1,4 +1,4 @@
-﻿namespace TimeTracker.Core.Shared.Models;
+﻿namespace TimeTracker.Core.Shared.Models.Dto;
 
 public class LookupDto
 {

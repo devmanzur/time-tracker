@@ -1,6 +1,6 @@
 ﻿using TimeTracker.Core.Shared.Interfaces;
 
-namespace TimeTracker.Core.Shared.Models;
+namespace TimeTracker.Core.Shared.Models.Dto;
 
 public class PageResult<T> where T : BaseDto
 {

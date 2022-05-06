@@ -2,9 +2,9 @@ using TimeTracker.Core.Auth.Models.Dto;
 using TimeTracker.Core.Auth.UseCases.GetAllPermissions;
 using TimeTracker.Core.Auth.UseCases.GetRolePermissions;
 using TimeTracker.Core.Auth.UseCases.UpdateRolePermission;
-using TimeTracker.Core.Shared.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using TimeTracker.Core.Shared.Models.Dto;
 
 namespace TimeTracker.Web.Controllers;
 

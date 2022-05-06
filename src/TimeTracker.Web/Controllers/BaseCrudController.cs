@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TimeTracker.Core.Shared.Interfaces;
-using TimeTracker.Core.Shared.Models;
+using TimeTracker.Core.Shared.Models.Dto;
 using TimeTracker.Core.TimeTracking.Interfaces;
 
 namespace TimeTracker.Web.Controllers;
@@ -20,7 +20,7 @@ public abstract class BaseCrudController<T, TE> : BaseApiController
     [HttpGet]
     public async Task<ActionResult<Envelope<PageResult<T>>>> GetPage([FromQuery] Segment segment)
     {
-        var page = await _queryService.GetPage<T,TE>(segment);
+        var page = await _queryService.Paginate<T,TE>(segment);
         return Ok(Envelope.Ok(page));
     }
     

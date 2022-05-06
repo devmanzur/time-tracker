@@ -2,10 +2,10 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using TimeTracker.Core.Shared.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using TimeTracker.Core.Shared.Interfaces;
+using TimeTracker.Core.Shared.Models.Dto;
 using TimeTracker.Core.TimeTracking.Interfaces;
 
 namespace TimeTracker.Core.Shared.Utils;

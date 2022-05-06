@@ -2,9 +2,9 @@
 using System.Net;
 using Microsoft.EntityFrameworkCore;
 using TimeTracker.Core.Shared.Exceptions;
-using TimeTracker.Core.Shared.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using TimeTracker.Core.Shared.Models.Dto;
 using TimeTracker.Web.Utils;
 
 namespace TimeTracker.Web.Middlewares;

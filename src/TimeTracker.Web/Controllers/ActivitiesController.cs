@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TimeTracker.Core.Shared.Models;
+using TimeTracker.Core.Shared.Models.Dto;
 using TimeTracker.Core.TimeTracking.Interfaces;
 using TimeTracker.Core.TimeTracking.Models.Dto;
 

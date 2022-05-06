@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TimeTracker.Core.Shared.Interfaces;
-using TimeTracker.Core.Shared.Models;
+using TimeTracker.Core.Shared.Models.Dto;
 using TimeTracker.Core.Shared.Utils;
 using TimeTracker.Core.TimeTracking.Interfaces;
 
@@ -23,7 +23,7 @@ public class BaseQueryService<TDc> : IQueryService where TDc : DbContext
         return _context.Set<TE>().ReadOnly().AsQueryable();
     }
 
-    public async Task<PageResult<T>> GetPage<T, TE>(Segment segment)
+    public async Task<PageResult<T>> Paginate<T, TE>(Segment segment)
         where T : BaseDto where TE : BaseEntity, ICrudEntity<T>
     {
         var total = await _context.Set<TE>().CountAsync();

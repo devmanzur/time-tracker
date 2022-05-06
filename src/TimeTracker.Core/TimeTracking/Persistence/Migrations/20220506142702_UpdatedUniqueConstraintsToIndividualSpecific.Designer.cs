@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimeTracker.Core.TimeTracking.Persistence;
 
@@ -11,9 +12,10 @@ using TimeTracker.Core.TimeTracking.Persistence;
 namespace TimeTracker.Core.TimeTracking.Persistence.Migrations
 {
     [DbContext(typeof(TimeTrackingContext))]
-    partial class TimeTrackingContextModelSnapshot : ModelSnapshot
+    [Migration("20220506142702_UpdatedUniqueConstraintsToIndividualSpecific")]
+    partial class UpdatedUniqueConstraintsToIndividualSpecific
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,4 +1,5 @@
 ﻿using TimeTracker.Core.Shared.Interfaces;
+using TimeTracker.Core.Shared.Utils;
 
 namespace TimeTracker.Core.TimeTracking.Rules;
 
@@ -15,7 +16,7 @@ public class EntityMustHaveValidIdRule  : IBusinessRule
     
     public bool IsBroken()
     {
-        return _entity ==null || _entity.Id < 1;
+        return _entity.HasNoValue() || _entity.Id < 1;
     }
 
     public string Message => $"Selected {_entityName} is not a valid entity";

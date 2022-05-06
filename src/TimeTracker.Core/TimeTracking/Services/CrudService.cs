@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
 using CSharpFunctionalExtensions;
+using Microsoft.EntityFrameworkCore;
 using TimeTracker.Core.Shared.Interfaces;
 using TimeTracker.Core.Shared.Utils;
 using TimeTracker.Core.TimeTracking.Interfaces;
-using TimeTracker.Core.TimeTracking.Persistence;
 
 namespace TimeTracker.Core.TimeTracking.Services;
 
-public class CrudService : ICrudService
+public class CrudService<TDc> : ICrudService where TDc : DbContext
 {
-    private readonly TimeTrackingContext _context;
+    private readonly TDc _context;
     private readonly IMapper _mapper;
 
-    public CrudService(TimeTrackingContext context, IMapper mapper)
+    public CrudService(TDc context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

@@ -34,8 +34,8 @@ public class TimeTrackingContext : BaseDbContext<TimeTrackingContext>
             if (typeof(IIndividuallyOwnedEntity).IsAssignableFrom(entityType.ClrType))
             {
                 //TODO: disable individual id accessor when running migrations
-                // entityType.AddIndividuallyOwnedEntityQueryFilter(string.Empty);
-                entityType.AddIndividuallyOwnedEntityQueryFilter(GetIndividualId());
+                entityType.AddIndividuallyOwnedEntityQueryFilter(string.Empty);
+                // entityType.AddIndividuallyOwnedEntityQueryFilter(GetIndividualId());
             }
         }
 
@@ -63,18 +63,6 @@ public class TimeTrackingContext : BaseDbContext<TimeTrackingContext>
                     break;
             }
         }
-    }
-
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-    {
-        SpecifyIndividual();
-        return await base.SaveChangesAsync(cancellationToken);
-    }
-
-    public override int SaveChanges()
-    {
-        SpecifyIndividual();
-        return base.SaveChanges();
     }
 
     public override int SaveChanges(bool acceptAllChangesOnSuccess)

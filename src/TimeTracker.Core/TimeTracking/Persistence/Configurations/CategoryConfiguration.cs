@@ -9,7 +9,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     public void Configure(EntityTypeBuilder<Category> builder)
     {
         builder.Property(x => x.Name).IsRequired();
-        builder.HasIndex(x => x.Name).IsUnique();
+        builder.HasIndex(x => new {x.Name, x.IndividualId}).IsUnique();
         builder.Property(x => x.IndividualId).IsRequired();
         builder.Property(x => x.IconUrl).IsRequired();
         builder.Property(x => x.ColorCode).HasConversion<string>().IsRequired();

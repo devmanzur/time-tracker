@@ -10,11 +10,10 @@ public class ActivityLabelConfiguration : IEntityTypeConfiguration<ActivityLabel
     {
         builder.Property(x => x.Name).IsRequired();
         builder.Property(x => x.IndividualId).IsRequired();
-        builder.HasIndex(x => x.Name).IsUnique();
+        builder.HasIndex(x => new {x.Name, x.IndividualId}).IsUnique();
         builder.Property(x => x.ColorCode).HasConversion<string>().IsRequired();
-        
-        
-        
+
+
         builder.HasMany(a => a.Tags)
             .WithOne(r => r.ActivityLabel)
             .HasForeignKey(r => r.ActivityLabelId)

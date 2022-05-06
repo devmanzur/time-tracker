@@ -16,6 +16,16 @@ public class EntityMustHaveValidIdRuleTest
     }
     
     [Fact]
+    public void ShouldBreakEntityMustHaveValidIdRuleWhenEntityIsNull()
+    {
+        //when
+        var rule = new EntityMustHaveValidIdRule(null,nameof(Category));
+        
+        //then
+        rule.IsBroken().Should().BeTrue();
+    }
+    
+    [Fact]
     public void ShouldBreakEntityMustHaveValidIdRuleWhenEntityHasNonPositiveId()
     {
         //given

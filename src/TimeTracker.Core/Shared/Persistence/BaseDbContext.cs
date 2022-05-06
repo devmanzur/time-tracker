@@ -34,8 +34,6 @@ public abstract class BaseDbContext<T> : DbContext where T : DbContext
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
-        SoftDelete();
-        Audit();
         var changes = TrackChanges();
         var changesMade = await base.SaveChangesAsync(cancellationToken);
         if (changesMade > 0) await DomainEventsDispatcher.DispatchEventsAsync(changes);
@@ -44,8 +42,6 @@ public abstract class BaseDbContext<T> : DbContext where T : DbContext
 
     public override int SaveChanges()
     {
-        SoftDelete();
-        Audit();
         var changes = TrackChanges();
         var changesMade = base.SaveChanges();
         if (changesMade > 0) DomainEventsDispatcher.DispatchEvents(changes);

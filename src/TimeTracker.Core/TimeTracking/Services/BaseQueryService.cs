@@ -4,16 +4,15 @@ using TimeTracker.Core.Shared.Interfaces;
 using TimeTracker.Core.Shared.Models;
 using TimeTracker.Core.Shared.Utils;
 using TimeTracker.Core.TimeTracking.Interfaces;
-using TimeTracker.Core.TimeTracking.Persistence;
 
 namespace TimeTracker.Core.TimeTracking.Services;
 
-public class BaseQueryService : IQueryService
+public class BaseQueryService<TDc> : IQueryService where TDc : DbContext
 {
-    private readonly TimeTrackingContext _context;
+    private readonly TDc _context;
     private readonly IMapper _mapper;
 
-    public BaseQueryService(TimeTrackingContext context, IMapper mapper)
+    public BaseQueryService(TDc context, IMapper mapper)
     {
         _context = context;
         _mapper = mapper;

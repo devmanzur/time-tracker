@@ -16,10 +16,10 @@ public class CategoriesController : BaseCrudController<CategoryDto, Category>
     }
 
     [HttpGet("lookup")]
-    public async Task<ActionResult<Envelope<List<SelectListItem>>>> Lookup()
+    public async Task<ActionResult<Envelope<List<LookupDto>>>> Lookup()
     {
         var items = await _queryService.Query<Category>()
-            .Select(x => new SelectListItem()
+            .Select(x => new LookupDto()
             {
                 Text = x.Name,
                 Value = x.Id.ToString()
@@ -29,9 +29,9 @@ public class CategoriesController : BaseCrudController<CategoryDto, Category>
     }
 
     [HttpGet("color-codes")]
-    public ActionResult<Envelope<List<SelectListItem>>> ColorCodesLookup()
+    public ActionResult<Envelope<List<LookupDto>>> ColorCodesLookup()
     {
-        var items = EnumUtils.ToList<ColorCode>().Select(x => new SelectListItem()
+        var items = EnumUtils.ToList<ColorCode>().Select(x => new LookupDto()
         {
             Text = x.ToSpacedSentence(),
             Value = x.ToString()
@@ -40,9 +40,9 @@ public class CategoriesController : BaseCrudController<CategoryDto, Category>
     }
 
     [HttpGet("priorities")]
-    public ActionResult<Envelope<List<SelectListItem>>> PrioritiesLookup()
+    public ActionResult<Envelope<List<LookupDto>>> PrioritiesLookup()
     {
-        var items = EnumUtils.ToList<Priority>().Select(x => new SelectListItem()
+        var items = EnumUtils.ToList<Priority>().Select(x => new LookupDto()
         {
             Text = x.ToSpacedSentence(),
             Value = x.ToString()

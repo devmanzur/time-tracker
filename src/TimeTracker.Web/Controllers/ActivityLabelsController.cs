@@ -17,10 +17,10 @@ public class ActivityLabelsController : BaseCrudController<ActivityLabelDto, Act
     }
 
     [HttpGet("lookup")]
-    public async Task<ActionResult<Envelope<List<SelectListItem>>>> Lookup()
+    public async Task<ActionResult<Envelope<List<LookupDto>>>> Lookup()
     {
         var items = await _queryService.Query<ActivityLabel>()
-            .Select(x => new SelectListItem()
+            .Select(x => new LookupDto()
             {
                 Text = x.Name,
                 Value = x.Id.ToString()
@@ -30,9 +30,9 @@ public class ActivityLabelsController : BaseCrudController<ActivityLabelDto, Act
     }
 
     [HttpGet("color-codes")]
-    public ActionResult<Envelope<List<SelectListItem>>> ColorCodesLookup()
+    public ActionResult<Envelope<List<LookupDto>>> ColorCodesLookup()
     {
-        var items = EnumUtils.ToList<ColorCode>().Select(x => new SelectListItem()
+        var items = EnumUtils.ToList<ColorCode>().Select(x => new LookupDto()
         {
             Text = x.ToSpacedSentence(),
             Value = x.ToString()

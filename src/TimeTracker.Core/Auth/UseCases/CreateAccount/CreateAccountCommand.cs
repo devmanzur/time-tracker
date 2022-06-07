@@ -18,9 +18,9 @@ public class CreateAccountCommandValidator : BaseFluentValidator<CreateAccountCo
 {
     public CreateAccountCommandValidator()
     {
-        RuleFor(x => x.Email).Must(ValidationUtils.IsValidEmailAddress).WithMessage("Invalid email address");
-        RuleFor(x => x.Password).NotNull().NotEmpty().WithMessage("Invalid password");
-        RuleFor(x => x.FirstName).NotNull().NotEmpty().WithMessage("Invalid first name");
-        RuleFor(x => x.LastName).NotNull().NotEmpty().WithMessage("Invalid last name");
+        RuleFor(x => x.Email).Must(ValidationUtils.IsValidEmailAddress).WithMessage("Email  is invalid");
+        RuleFor(x => x.Password).NotNull().NotEmpty().WithMessage("Password  is invalid");
+        RuleFor(x => x.FirstName).NotNull().NotEmpty().WithMessage("FirstName is invalid");
+        RuleFor(x => x.LastName).NotNull().NotEmpty().WithMessage("LastName is invalid");
     }
 }

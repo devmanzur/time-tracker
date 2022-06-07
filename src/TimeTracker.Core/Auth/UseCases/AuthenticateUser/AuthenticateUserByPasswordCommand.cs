@@ -23,8 +23,8 @@ namespace TimeTracker.Core.Auth.UseCases.AuthenticateUser
     {
         public AuthenticateUserByPasswordCommandValidator()
         {
-            RuleFor(x => x.Email).Must(ValidationUtils.IsValidEmailAddress).WithMessage("Invalid email address");
-            RuleFor(x => x.Password).NotNull().NotEmpty().WithMessage("Invalid password");
+            RuleFor(x => x.Email).Must(ValidationUtils.IsValidEmailAddress).WithMessage("Email address is invalid");
+            RuleFor(x => x.Password).NotNull().NotEmpty().WithMessage("Password is invalid");
         }
     }
 }

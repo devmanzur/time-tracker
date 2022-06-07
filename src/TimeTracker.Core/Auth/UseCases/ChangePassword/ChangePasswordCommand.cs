@@ -25,7 +25,7 @@ public class ChangePasswordCommandValidator : BaseFluentValidator<ChangePassword
 {
     public ChangePasswordCommandValidator()
     {
-        RuleFor(x => x.CurrentPassword).NotEmpty();
-        RuleFor(x => x.NewPassword).NotEmpty();
+        RuleFor(x => x.CurrentPassword).NotEmpty().WithMessage("CurrentPassword is invalid");
+        RuleFor(x => x.NewPassword).NotEmpty().WithMessage("NewPassword is invalid");
     }
 }

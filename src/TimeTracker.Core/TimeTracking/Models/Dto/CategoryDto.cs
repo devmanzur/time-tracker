@@ -18,12 +18,12 @@ public class CategoryDtoValidator : BaseFluentValidator<CategoryDto>
 {
     public CategoryDtoValidator()
     {
-        RuleFor(x => x.Name).NotNull().NotEmpty();
-        RuleFor(x => x.IconUrl).NotNull().NotEmpty();
+        RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage("Name is invalid");
+        RuleFor(x => x.IconUrl).NotNull().NotEmpty().WithMessage("IconUrl is invalid");
         RuleFor(x => x.Priority).NotNull().NotEmpty().Must(EnumUtils.BelongToType<Priority>)
-            .WithMessage("Invalid priority value");
+            .WithMessage("Priority is invalid");
         RuleFor(x => x.ColorCode).NotNull().NotEmpty().Must(EnumUtils.BelongToType<ColorCode>)
-            .WithMessage("Invalid color code value");
+            .WithMessage("ColorCode is invalid");
     }
 }
 

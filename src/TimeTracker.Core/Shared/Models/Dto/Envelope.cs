@@ -1,44 +1,44 @@
-﻿namespace TimeTracker.Core.Shared.Models.Dto
+﻿using static TimeTracker.Core.Shared.Utils.ValidationUtils;
+
+namespace TimeTracker.Core.Shared.Models.Dto
 {
     public class Envelope<T>
     {
         // ReSharper disable once MemberCanBeProtected.Global
-        protected internal Envelope(T body, string? errorMessage, Dictionary<string, string>? errorDetails)
+        protected internal Envelope(T body, string? errorMessage)
         {
             Body = body;
-            ErrorMessage = errorMessage;
-            ErrorDetails = errorDetails;
+            Errors = GetProblemDetailFormattedErrors(errorMessage);
             TimeGenerated = DateTime.UtcNow;
             IsSuccess = errorMessage == null;
         }
 
         public T Body { get; }
-        public string? ErrorMessage { get; }
+        public Dictionary<string, List<string>>? Errors { get; }
         public DateTime TimeGenerated { get; }
         public bool IsSuccess { get; }
-        public Dictionary<string, string>? ErrorDetails { get; }
     }
 
     public class Envelope : Envelope<string>
     {
-        private Envelope(string? errorMessage, Dictionary<string, string>? details)
-            : base((errorMessage == null ? null : "") ?? string.Empty, errorMessage, details)
+        private Envelope(string? errorMessage)
+            : base((errorMessage == null ? null : "") ?? string.Empty, errorMessage)
         {
         }
 
         public static Envelope<T> Ok<T>(T result)
         {
-            return new Envelope<T>(result, null, null);
+            return new Envelope<T>(result, null);
         }
 
         public static Envelope Ok()
         {
-            return new Envelope(null, null);
+            return new Envelope(null);
         }
 
-        public static Envelope Error(string errorMessage, Dictionary<string, string>? details = null)
+        public static Envelope Error(string errorMessage)
         {
-            return new Envelope(errorMessage, details);
+            return new Envelope(errorMessage);
         }
     }
 }

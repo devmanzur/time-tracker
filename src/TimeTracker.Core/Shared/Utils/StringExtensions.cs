@@ -2,7 +2,7 @@ namespace TimeTracker.Core.Shared.Utils
 {
     public static class StringExtensions
     {
-        public static bool IsNullEmptyOrWhiteSpace(this string text)
+        public static bool IsNullEmptyOrWhiteSpace(this string? text)
         {
             if (!string.IsNullOrEmpty(text))
             {

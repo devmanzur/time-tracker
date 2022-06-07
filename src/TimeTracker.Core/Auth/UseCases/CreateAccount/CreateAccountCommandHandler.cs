@@ -4,6 +4,7 @@ using CSharpFunctionalExtensions;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using TimeTracker.Core.Shared.Utils;
 
 namespace TimeTracker.Core.Auth.UseCases.CreateAccount;
 
@@ -23,7 +24,7 @@ public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand,
         var validation = await _validator.ValidateAsync(request, cancellationToken);
         if (!validation.IsValid)
         {
-            return Result.Failure<UserDto>(validation.Errors.FirstOrDefault()?.ErrorMessage);
+            return Result.Failure<UserDto>(validation.Errors.GetSerializedErrors());
         }
         
         Maybe<ApplicationUser> existingUser = await _userManager.FindByEmailAsync(request.Email);

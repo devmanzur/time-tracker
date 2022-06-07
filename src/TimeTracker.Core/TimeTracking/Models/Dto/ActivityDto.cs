@@ -23,9 +23,9 @@ public class ActivityDtoValidator : BaseFluentValidator<ActivityDto>
     {
         RuleFor(x => x.Duration).NotNull().NotEmpty().Must(IsValidDuration)
             .WithMessage("Duration must be at least 5 minutes");
-        RuleFor(x => x.Date).NotNull().NotEmpty();
-        RuleFor(x => x.MandateId).NotNull().NotEmpty().Must(ValidationUtils.IsValidEntityId);
-        RuleFor(x => x.CategoryId).NotNull().NotEmpty().Must(ValidationUtils.IsValidEntityId);
+        RuleFor(x => x.Date).NotNull().NotEmpty().WithMessage("Date is invalid");
+        RuleFor(x => x.MandateId).NotNull().NotEmpty().Must(ValidationUtils.IsValidEntityId).WithMessage("Mandate is invalid");
+        RuleFor(x => x.CategoryId).NotNull().NotEmpty().Must(ValidationUtils.IsValidEntityId).WithMessage("Category is invalid");
     }
 
     private static bool IsValidDuration(Duration arg)

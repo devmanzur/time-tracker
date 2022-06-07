@@ -12,10 +12,10 @@ public partial class ActivityService
     
     public async Task<Result<ActivityDetailsDto>> Create(ActivityDto request)
     {
-        var validationResult = await _validator.ValidateAsync(request);
-        if (!validationResult.IsValid)
+        var validation = await _validator.ValidateAsync(request);
+        if (!validation.IsValid)
         {
-            return Result.Failure<ActivityDetailsDto>(validationResult.Errors.FirstOrDefault()!.ErrorMessage);
+            return Result.Failure<ActivityDetailsDto>(validation.Errors.GetSerializedErrors());
         }
 
         Maybe<Mandate?> mandate =

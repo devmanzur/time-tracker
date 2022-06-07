@@ -17,8 +17,8 @@ public class ActivityLabelDtoValidator : BaseFluentValidator<ActivityLabelDto>
 {
     public ActivityLabelDtoValidator()
     {
-        RuleFor(x => x.Name).NotNull().NotEmpty();
-        RuleFor(x => x.ColorCode).NotNull().NotEmpty().Must(EnumUtils.BelongToType<ColorCode>).WithMessage("Invalid color code value");
+        RuleFor(x => x.Name).NotNull().NotEmpty().WithMessage("Name is invalid");
+        RuleFor(x => x.ColorCode).NotNull().NotEmpty().Must(EnumUtils.BelongToType<ColorCode>).WithMessage("ColorCode is invalid");
     }
 }
 

@@ -40,7 +40,7 @@ public class Category : BaseEntity, ICrudEntity<CategoryDto>,IIndividuallyOwnedE
         if (!validation.IsValid)
         {
             {
-                output = Result.Failure(validation.Errors.FirstOrDefault()?.ErrorMessage);
+                output = Result.Failure(validation.Errors.GetSerializedErrors());
                 return true;
             }
         }

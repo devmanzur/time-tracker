@@ -1,8 +1,10 @@
 using System.Security.Claims;
 using TimeTracker.Core.Auth.Models.Entities;
 using CSharpFunctionalExtensions;
+using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using TimeTracker.Core.Shared.Utils;
 
 namespace TimeTracker.Core.Auth.UseCases.AuthenticateUser
 {
@@ -11,18 +13,26 @@ namespace TimeTracker.Core.Auth.UseCases.AuthenticateUser
     {
         private readonly SignInManager<ApplicationUser> _authenticationManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IValidator<AuthenticateUserByPasswordCommand> _validator;
 
         public AuthenticateUserByPasswordCommandHandler(SignInManager<ApplicationUser> authenticationManager,
-            UserManager<ApplicationUser> userManager)
+            UserManager<ApplicationUser> userManager, IValidator<AuthenticateUserByPasswordCommand> validator)
         {
             _authenticationManager = authenticationManager;
             _userManager = userManager;
+            _validator = validator;
         }
 
         public async Task<Result<(ApplicationUser, ClaimsPrincipal)>> Handle(
             AuthenticateUserByPasswordCommand request,
             CancellationToken cancellationToken)
         {
+            var validation = await _validator.ValidateAsync(request, cancellationToken);
+            if (!validation.IsValid)
+            {
+                return Result.Failure<(ApplicationUser, ClaimsPrincipal)>(validation.Errors.GetSerializedErrors());
+            }
+            
             Maybe<ApplicationUser> user = await _userManager.FindByEmailAsync(request.Email);
             if (user.HasNoValue)
             {

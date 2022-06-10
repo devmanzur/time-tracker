@@ -2,24 +2,16 @@
 <html>
 
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <style>
-        @font-face {
-            font-family: 'Museo Sans';
-            src: url('fonts/MuseoSans_300.ttf');
-        }
-        @font-face {
-            font-family: 'Museo Sans Bold';
-            src: url('fonts/MuseoSans_700.ttf');
-        }
-
         body {
-            font-family: 'Museo Sans', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             color: dimgrey;
             padding: 8px;
         }
 
         table {
-            font-family: 'Museo Sans', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             color: dimgrey;
             border-collapse: collapse;
             background-color: #ffffff;
@@ -71,9 +63,9 @@
 <div style="text-align:center">
     <p><b>@HeaderLine1</b></p>
     <p>@HeaderLine2</p>
-    <p><b>HeaderLine3</b></p>
+    <p><b>@HeaderLine3</b></p>
 </div>
-<hr style="color:gray;background-color:gray;height:0.1px">
+<hr style="color:#f7f7f7;background-color:#f7f7f7;height:0.1px">
 <hr style="color:#1b75bc;background-color:#1b75bc;height:2px">
 
 <table>
@@ -86,19 +78,19 @@
         <td colspan="2">
             <div>
                 <p>Claim reference</p>
-                <h4>@ClaimRef</h4>
+                <h4>@ClaimRef@</h4>
             </div>
         </td>
         <td>
             <div>
                 <p>Date and time of lodgement</p>
-                <h4>@DoL</h4>
+                <h4>@DoL@</h4>
             </div>
         </td>
         <td>
             <div>
                 <p>ACRF</p>
-                <h4>@ACRF</h4>
+                <h4>@ACRF@</h4>
             </div>
         </td>
     </tr>
@@ -108,19 +100,19 @@
         <td colspan="2">
             <div>
                 <p>Location</p>
-                <h4>@Location</h4>
+                <h4>@Location@</h4>
             </div>
         </td>
         <td>
             <div>
                 <p>Location ID</p>
-                <h4>@LocationId</h4>
+                <h4>@LocationId@</h4>
             </div>
         </td>
         <td>
             <div>
                 <p>Location contact</p>
-                <h4>@LocationContact</h4>
+                <h4>@LocationContact@</h4>
             </div>
         </td>
     </tr>
@@ -128,12 +120,12 @@
     <tr>
         <td colspan="4">
             <p>Location address</p>
-            <h4>@LocationAddress</h4>
+            <h4>@LocationAddress@</h4>
         </td>
     </tr>
 </table>
 
-<hr style="color:gray;background-color:gray;height:0.1px">
+<hr style="color:#f7f7f7;background-color:#f7f7f7;height:0.1px">
 <hr style="color:#1b75bc;background-color:#1b75bc;height:2px">
 
 
@@ -148,13 +140,13 @@
         <td colspan="2">
             <div>
                 <p>Name</p>
-                <h4>@PatientName</h4>
+                <h4>@PatientName@</h4>
             </div>
         </td>
         <td colspan="2">
             <div>
                 <p>Name</p>
-                <h4>@ClaimantName</h4>
+                <h4>@ClaimantName@</h4>
             </div>
         </td>
     </tr>
@@ -163,13 +155,13 @@
         <td colspan="2">
             <div>
                 <p>Date of birth</p>
-                <h4>@PatientDob</h4>
+                <h4>@PatientDob@</h4>
             </div>
         </td>
         <td colspan="2">
             <div>
                 <p>Date of birth</p>
-                <h4>@ClaimantDob</h4>
+                <h4>@ClaimantDob@</h4>
             </div>
         </td>
     </tr>
@@ -178,25 +170,25 @@
         <td>
             <div>
                 <p>Medicare no.</p>
-                <h4>@PatientMedicareNo</h4>
+                <h4>@PatientMedicareNo@</h4>
             </div>
         </td>
         <td>
             <div>
                 <p>Medicare IRN</p>
-                <h4>@PatientMedicareIrn</h4>
+                <h4>@PatientMedicareIrn@</h4>
             </div>
         </td>
         <td>
             <div>
                 <p>Medicare no.</p>
-                <h4>@ClaimantMedicareNo</h4>
+                <h4>@ClaimantMedicareNo@</h4>
             </div>
         </td>
         <td>
             <div>
                 <p>Medicare IRN</p>
-                <h4>@ClaimantMedicareIrn</h4>
+                <h4>@ClaimantMedicareIrn@</h4>
             </div>
         </td>
     </tr>
@@ -210,14 +202,14 @@
         <td colspan="2">
             <div>
                 <p>Address</p>
-                <h4>@PatientAddress</h4>
+                <h4>@ClaimantAddress@</h4>
             </div>
         </td>
     </tr>
 
 </table>
 
-<hr style="color:gray;background-color:gray;height:0.1px">
+<hr style="color:#f7f7f7;background-color:#f7f7f7;height:0.1px">
 <hr style="color:#1b75bc;background-color:#1b75bc;height:2px">
 
 
@@ -231,13 +223,13 @@
         <td colspan="3">
             <div>
                 <p>Servicing provider</p>
-                <h4>@ServicingProviderName</h4>
+                <h4>@ServicingProvider@</h4>
             </div>
         </td>
         <td colspan="1">
             <div>
                 <p>Servicing provider no.</p>
-                <h4>@ServicingProviderNo</h4>
+                <h4>@ServicingProviderNo@</h4>
             </div>
         </td>
     </tr>
@@ -246,13 +238,13 @@
         <td colspan="3">
             <div>
                 <p>Payee provider</p>
-                <h4>@PayeeProvider</h4>
+                <h4>@PayeeProvider@</h4>
             </div>
         </td>
         <td colspan="1">
             <div>
                 <p>Payee provider no.</p>
-                <h4>@PayeeProvicerNo</h4>
+                <h4>@PayeeProviderNo@</h4>
             </div>
         </td>
     </tr>
@@ -261,13 +253,13 @@
         <td colspan="3">
             <div>
                 <p>Referrer provider</p>
-                <h4>@ReferrerProvider</h4>
+                <h4>@ReferrerProvider@</h4>
             </div>
         </td>
         <td colspan="1">
             <div>
                 <p>Referrer provider no.</p>
-                <h4>@ReferrerProviderNo</h4>
+                <h4>@ReferrerProviderNo@</h4>
             </div>
         </td>
     </tr>
@@ -276,19 +268,20 @@
         <td colspan="3">
             <div>
                 <p>Referrer period</p>
-                <h4>@ReferrerPeriod</h4>
+                <h4>@ReferrerPeriod@</h4>
             </div>
         </td>
         <td colspan="1">
             <div>
                 <p>Referral date</p>
-                <h4>@ReferralDate</h4>
+                <h4>@ReferralDate@</h4>
             </div>
         </td>
     </tr>
 
 </table>
 
+<hr style="color:#f7f7f7;background-color:#f7f7f7;height:0.1px">
 <hr style="color:#1b75bc;background-color:#1b75bc;height:2px">
 
 <table>
@@ -301,23 +294,14 @@
         <th>Patient cont.</th>
         <th>Benefit</th>
     </tr>
-
+    <div>@ServiceItems@</div>
     <tr>
-        <td style="padding: 8px">@ServiceDate</td>
-        <td style="padding: 8px">@ItemNo</td>
-        <td style="padding: 8px">@ItemName</td>
-        <td style="padding: 8px">@ChargeAmt</td>
-        <td style="padding: 8px">@PatientCont</td>
-        <td style="padding: 8px">@Benefit</td>
-    </tr>
-
-    <tr>
-        <td style="padding: 8px">@ServiceDate</td>
-        <td style="padding: 8px">@ItemNo</td>
-        <td style="padding: 8px">@ItemName</td>
-        <td style="padding: 8px">@ChargeAmt</td>
-        <td style="padding: 8px">@PatientCont</td>
-        <td style="padding: 8px">@Benefit</td>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
     </tr>
 </table>
 
@@ -334,7 +318,7 @@
         responsibility of the claimant to forward the PDVC cheque to the service/ payee provider.</p>
 </div>
 
-<hr style="color:gray;background-color:gray;height:0.1px">
+<hr style="color:#f7f7f7;background-color:#f7f7f7;height:0.1px">
 
 <div>
     <h3 style="text-align:center">Claimant Declaration</h3>
@@ -356,7 +340,7 @@
     </ul>
 </div>
 
-<hr style="color:gray;background-color:gray;height:0.1px">
+<hr style="color:#f7f7f7;background-color:#f7f7f7;height:0.1px">
 
 <div>
     <h3 style="text-align:center">Privacy Notice</h3>
@@ -369,7 +353,7 @@
     </p>
 </div>
 
-<hr style="color:gray;background-color:gray;height:0.1px">
+<hr style="color:#f7f7f7;background-color:#f7f7f7;height:0.1px">
 
 </body>
 

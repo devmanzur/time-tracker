@@ -12,12 +12,13 @@ public class FilesController : BaseApiController
     {
         _webHostEnvironment = webHostEnvironment;
     }
-    
+
     [AllowAnonymous]
     [HttpPost("send-email-attachment")]
     public async Task<IActionResult> GeneratePdfAndSendEmailWithAttachment()
     {
-        HtmlToPdfConverter.ConvertHtmlToPdf(_webHostEnvironment.WebRootPath,"demo-template","myoutputfile");
+        HtmlToPdfConverter.ConvertHtmlToPdf(_webHostEnvironment.WebRootPath, "pdf-template", "myoutputfile",
+            HtmlToPdfConverter.PCITemplateFiller);
         return Ok();
     }
 }

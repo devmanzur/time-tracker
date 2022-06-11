@@ -32,22 +32,6 @@ public abstract class BaseDbContext<T> : DbContext where T : DbContext
         }
     }
 
-    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-    {
-        var changes = TrackChanges();
-        var changesMade = await base.SaveChangesAsync(cancellationToken);
-        if (changesMade > 0) await DomainEventsDispatcher.DispatchEventsAsync(changes);
-        return changesMade;
-    }
-
-    public override int SaveChanges()
-    {
-        var changes = TrackChanges();
-        var changesMade = base.SaveChanges();
-        if (changesMade > 0) DomainEventsDispatcher.DispatchEvents(changes);
-        return changesMade;
-    }
-
     public override int SaveChanges(bool acceptAllChangesOnSuccess)
     {
         SoftDelete();

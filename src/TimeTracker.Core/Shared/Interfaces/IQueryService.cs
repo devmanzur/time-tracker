@@ -1,7 +1,6 @@
-﻿using TimeTracker.Core.Shared.Interfaces;
-using TimeTracker.Core.Shared.Models.Dto;
+﻿using TimeTracker.Core.Shared.Models.Dto;
 
-namespace TimeTracker.Core.TimeTracking.Interfaces;
+namespace TimeTracker.Core.Shared.Interfaces;
 
 public interface IQueryService
 {

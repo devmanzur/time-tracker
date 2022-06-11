@@ -1,7 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
-using TimeTracker.Core.Shared.Interfaces;
 
-namespace TimeTracker.Core.TimeTracking.Interfaces;
+namespace TimeTracker.Core.Shared.Interfaces;
 
 public interface ICrudService
 {

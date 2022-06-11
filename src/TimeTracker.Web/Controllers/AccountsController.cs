@@ -1,16 +1,12 @@
-using System.Security.Claims;
 using TimeTracker.Core.Auth.Interfaces;
 using TimeTracker.Core.Auth.Models.Dto;
-using TimeTracker.Core.Auth.UseCases.AuthenticateUser;
 using TimeTracker.Core.Auth.UseCases.ChangePassword;
 using TimeTracker.Core.Auth.UseCases.CreateAccount;
 using TimeTracker.Core.Auth.UseCases.GetUserProfile;
 using TimeTracker.Core.Auth.UseCases.ResetPassword;
-using TimeTracker.Web.Models;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OpenIddict.Server.AspNetCore;
 using TimeTracker.Core.Shared.Models.Dto;

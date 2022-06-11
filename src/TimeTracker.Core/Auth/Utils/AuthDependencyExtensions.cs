@@ -1,3 +1,4 @@
+using FluentValidation;
 using MediatR;
 using TimeTracker.Core.Auth.Brokers;
 using TimeTracker.Core.Auth.Interfaces;
@@ -8,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OpenIddict.Abstractions;
+using TimeTracker.Core.Auth.UseCases.AuthenticateUser;
 
 namespace TimeTracker.Core.Auth.Utils;
 
@@ -19,6 +21,7 @@ public static class AuthDependencyExtensions
         services.AddScoped<IIdentityDomainEventsDispatcher, IdentityDomainEventsDispatcher>();
         services.AddScoped<ITokenNotificationBroker, DummyNotificationBroker>();
         services.AddHostedService<ClientSeedingService>();
+        services.AddValidatorsFromAssemblyContaining<AuthenticateUserByPasswordCommandValidator>();
 
         #region identity configuration
 
